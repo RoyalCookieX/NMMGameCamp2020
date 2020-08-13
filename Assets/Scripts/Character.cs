@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable
+public abstract class Character : MonoBehaviour, IDamageable
 {
-    [Header("Components")]
-    [SerializeField] Weapon weapon;
-    [SerializeField] Transform characterGraphics;
-    [SerializeField] Transform arm;
-    [SerializeField] Transform weaponPoint;
+    [Header("Character Components")]
+    [SerializeField] Weapon weapon = null;
+    [SerializeField] Transform characterGraphics = null;
+    [SerializeField] Transform arm = null;
+    [SerializeField] Transform weaponPoint = null;
     [SerializeField] Camera cam; //Temporary
 
     [Space]
-    [Header("Properties")]
+    [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
@@ -85,5 +85,10 @@ public class Character : MonoBehaviour, IDamageable
         }
 
         weapon = null;
+    }
+
+    public virtual void Respawn()
+    {
+        
     }
 }
