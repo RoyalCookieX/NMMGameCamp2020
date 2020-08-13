@@ -25,7 +25,8 @@ public class Character : MonoBehaviour, IDamageable
 
         if(weapon)
         {
-            if (Input.GetButtonDown("Fire1")) weapon.Fire();
+            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
+            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
             if (Input.GetButtonDown("Fire2")) weapon.Reload();
             if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
         }
@@ -54,6 +55,11 @@ public class Character : MonoBehaviour, IDamageable
     public virtual void EquipWeapon(Weapon weapon)
     {
         this.weapon = weapon;
+
+        if(weapon.GetType() == typeof(TestGun))
+        {
+            print("this is a test gun");
+        }
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
