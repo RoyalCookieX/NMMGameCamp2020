@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, IPoolObject
 {
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb = null;
     [SerializeField] float damage = 0;
-    [SerializeField] float maxLifetime;
-    float curLifetime;
+    [SerializeField] float maxLifetime = 1;
+    float curLifetime = 1;
 
     private void Update()
     {
