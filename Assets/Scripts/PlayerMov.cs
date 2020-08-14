@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scriptPlayer : MonoBehaviour
+public class PlayerMov : MonoBehaviour
 {
     float playerSpeedHorizontal;
     float playerSpeedVertical;
