@@ -5,11 +5,11 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour, IDamageable
 {
     [Header("Character Components")]
-    [SerializeField] Weapon weapon = null;
-    [SerializeField] Transform characterGraphics = null;
-    [SerializeField] Transform arm = null;
-    [SerializeField] Transform weaponPoint = null;
-    [SerializeField] Camera cam; //Temporary
+    [SerializeField] protected Weapon weapon = null;
+    [SerializeField] protected Transform characterGraphics = null;
+    [SerializeField] protected Transform arm = null;
+    [SerializeField] protected Transform weaponPoint = null;
+    [SerializeField] protected string teamName;
 
     [Space]
     [Header("Characrter Properties")]
@@ -17,12 +17,17 @@ public abstract class Character : MonoBehaviour, IDamageable
     public float Health { get { return health; } }
     public bool invert;
 
-    private void Update()
-    {
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        float angle = Vector2.SignedAngle(Vector2.right, (Vector2)Input.mousePosition - screenCenter);
-        SetArmAngle(angle);
+    [Space]
+    [Header("Character Stats")]
+    public CharacterStats stats;
 
+    protected virtual void OnEnable()
+    {
+        OnSpawn();
+    }
+
+    protected virtual void Update()
+    {
         if(weapon)
         {
             if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
@@ -47,19 +52,31 @@ public abstract class Character : MonoBehaviour, IDamageable
         weaponPoint.transform.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
     }
 
+    protected virtual void OnSpawn()
+    {
+
+    }
+
+    protected virtual void OnDespawn()
+    {
+
+    }
+
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0) Die();
+    }
+
+    public virtual void Die()
+    {
+        OnDespawn();
+        gameObject.SetActive(false);
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
         this.weapon = weapon;
-
-        if(weapon.GetType() == typeof(TestGun))
-        {
-            print("this is a test gun");
-        }
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -87,8 +104,15 @@ public abstract class Character : MonoBehaviour, IDamageable
         weapon = null;
     }
 
-    public virtual void Respawn()
+    public void SetTeam(string teamName)
     {
-        
+        this.teamName = teamName;
     }
+}
+
+[System.Serializable]
+public struct CharacterStats
+{
+    public int kills;
+    public int assists;
 }
