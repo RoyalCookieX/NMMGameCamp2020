@@ -17,21 +17,6 @@ public abstract class Character : MonoBehaviour, IDamageable
     public float Health { get { return health; } }
     public bool invert;
 
-    [Space]
-    [Header("Character Stats")]
-    public CharacterStats stats;
-
-    protected virtual void Update()
-    {
-        if(weapon)
-        {
-            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
-            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
-            if (Input.GetButtonDown("Fire2")) weapon.Reload();
-            if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.TryGetComponent(out Weapon weapon))
@@ -92,11 +77,4 @@ public abstract class Character : MonoBehaviour, IDamageable
     {
         this.teamName = teamName;
     }
-}
-
-[System.Serializable]
-public struct CharacterStats
-{
-    public int kills;
-    public int assists;
 }

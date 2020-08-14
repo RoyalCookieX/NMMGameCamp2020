@@ -10,6 +10,7 @@ public class TeamManager : MonoBehaviour
 
     [SerializeField] List<Character> teamList;
     [SerializeField] List<Spawnpoint> spawnpoints;
+    [SerializeField] float radius = 1;
 
     [ContextMenu("Start Game")]
     void OnStartGame()
@@ -82,7 +83,7 @@ public class TeamManager : MonoBehaviour
     {
         if (spawnpoints.Count == 0) return;
         Transform point = spawnpoints[spawnpointIndex].transform;
-        teamList[characterIndex].transform.position = point.position;
+        teamList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         teamList[characterIndex].transform.rotation = point.rotation;
 
         teamList[characterIndex].gameObject.SetActive(true);

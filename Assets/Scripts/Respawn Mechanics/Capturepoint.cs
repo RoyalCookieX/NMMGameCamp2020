@@ -18,8 +18,8 @@ public class Capturepoint : Spawnpoint
     {
         if (teamName == TeamName) return;
         if (!teamProgress.ContainsKey(teamName)) teamProgress.Add(teamName, 0);
-        teamProgress[teamName] += Time.deltaTime;
-        if (teamProgress[teamName] >= 10) OnCaptured(teamName);
+        if(teamProgress[teamName] < maxProgress) teamProgress[teamName] += Time.deltaTime;
+        if (teamProgress[teamName] >= maxProgress) OnCaptured(teamName);
     }
 
     [ContextMenu("Blue Capture")]

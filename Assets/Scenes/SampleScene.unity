@@ -251,6 +251,7 @@ MonoBehaviour:
   - {fileID: 2252159497235502749, guid: 86aba06bb74431840b4097cca40bfb92, type: 3}
   spawnpoints:
   - {fileID: 787229988}
+  radius: 1
 --- !u!4 &284408539
 Transform:
   m_ObjectHideFlags: 0
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879c4ce609d6a124ebd25aa14b04c3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamName: Blue
+  TeamName: Blue
 --- !u!4 &442649669
 Transform:
   m_ObjectHideFlags: 0
@@ -511,7 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938313797eab773468e6d0ce137dbe5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamName: 
+  TeamName: 
   maxProgress: 10
 --- !u!4 &767570433
 Transform:
@@ -556,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 879c4ce609d6a124ebd25aa14b04c3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamName: Red
+  TeamName: Red
 --- !u!4 &787229989
 Transform:
   m_ObjectHideFlags: 0
@@ -688,6 +689,7 @@ MonoBehaviour:
   - {fileID: 2252159497235502749, guid: 86aba06bb74431840b4097cca40bfb92, type: 3}
   spawnpoints:
   - {fileID: 442649668}
+  radius: 1
 --- !u!4 &1208835327
 Transform:
   m_ObjectHideFlags: 0
