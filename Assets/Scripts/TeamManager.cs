@@ -11,11 +11,6 @@ public class TeamManager : MonoBehaviour
     [SerializeField] List<Character> teamList;
     [SerializeField] List<Spawnpoint> spawnpoints;
 
-    private void Start()
-    {
-
-    }
-
     [ContextMenu("Start Game")]
     void OnStartGame()
     {
@@ -23,6 +18,10 @@ public class TeamManager : MonoBehaviour
         foreach (Spawnpoint spawnpoint in FindObjectsOfType<Spawnpoint>())
         {
             if (spawnpoint.TeamName == TeamName) spawnpoints.Add(spawnpoint);
+            if(spawnpoint.GetType() == typeof(Capturepoint))
+            {
+                ((Capturepoint)spawnpoint).onCaptureEvent += TeamManager_onCaptureEvent;
+            }
         }
 
         if (spawnpoints.Count == 0) return;
@@ -35,9 +34,28 @@ public class TeamManager : MonoBehaviour
         }
     }
 
-    public void AddSpawnpoint(Spawnpoint spawnpoint)
+    [ContextMenu("End Game")]
+    void OnEndGame()
     {
-        spawnpoints.Add(spawnpoint);
+        foreach(Spawnpoint spawnpoint in spawnpoints)
+        {
+            if (spawnpoint.GetType() == typeof(Capturepoint))
+            {
+                ((Capturepoint)spawnpoint).onCaptureEvent -= TeamManager_onCaptureEvent;
+            }
+        }
+    }
+
+    private void TeamManager_onCaptureEvent(string teamName, Capturepoint capturepoint)
+    {
+        if(this.teamName == teamName)
+        {
+            if (!spawnpoints.Contains(capturepoint)) spawnpoints.Add(capturepoint);
+        }
+        else
+        {
+            if (spawnpoints.Contains(capturepoint)) spawnpoints.Remove(capturepoint);
+        }
     }
 
     public void AddCharacter(Character character)
@@ -45,11 +63,20 @@ public class TeamManager : MonoBehaviour
         teamList.Add(character);
     }
 
-    [ContextMenu("Spawn Test")]
-    public void SpawnTest()
+    [ContextMenu("Capturepoint Test")]
+    public void CapturepointTest()
     {
+        if (spawnpoints.Count < 2) return;
+        SpawnCharacter(0, 1);
+    }
+
+    [ContextMenu("Spawnpoint Test")]
+    public void SpawnpointTest()
+    {
+        if (spawnpoints.Count < 1) return;
         SpawnCharacter(0, 0);
     }
+
 
     public void SpawnCharacter(int characterIndex, int spawnpointIndex)
     {

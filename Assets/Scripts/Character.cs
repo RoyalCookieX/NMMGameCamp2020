@@ -21,11 +21,6 @@ public abstract class Character : MonoBehaviour, IDamageable
     [Header("Character Stats")]
     public CharacterStats stats;
 
-    protected virtual void OnEnable()
-    {
-        OnSpawn();
-    }
-
     protected virtual void Update()
     {
         if(weapon)
@@ -52,16 +47,6 @@ public abstract class Character : MonoBehaviour, IDamageable
         weaponPoint.transform.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
     }
 
-    protected virtual void OnSpawn()
-    {
-
-    }
-
-    protected virtual void OnDespawn()
-    {
-
-    }
-
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
@@ -70,7 +55,6 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
-        OnDespawn();
         gameObject.SetActive(false);
     }
 
