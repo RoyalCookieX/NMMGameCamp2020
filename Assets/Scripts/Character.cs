@@ -2,35 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable
+public abstract class Character : MonoBehaviour, IDamageable
 {
-    [Header("Components")]
-    [SerializeField] Weapon weapon;
-    [SerializeField] Transform characterGraphics;
-    [SerializeField] Transform arm;
-    [SerializeField] Transform weaponPoint;
-    [SerializeField] Camera cam; //Temporary
+    [Header("Character Components")]
+    [SerializeField] protected Weapon weapon = null;
+    [SerializeField] protected Transform characterGraphics = null;
+    [SerializeField] protected Transform arm = null;
+    [SerializeField] protected Transform weaponPoint = null;
+    [SerializeField] protected string teamName;
 
     [Space]
-    [Header("Properties")]
+    [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
-
-    private void Update()
-    {
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        float angle = Vector2.SignedAngle(Vector2.right, (Vector2)Input.mousePosition - screenCenter);
-        SetArmAngle(angle);
-
-        if(weapon)
-        {
-            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
-            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
-            if (Input.GetButtonDown("Fire2")) weapon.Reload();
-            if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -50,16 +35,17 @@ public class Character : MonoBehaviour, IDamageable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+        if (health <= 0) Die();
+    }
+
+    public virtual void Die()
+    {
+        gameObject.SetActive(false);
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
         this.weapon = weapon;
-
-        if(weapon.GetType() == typeof(TestGun))
-        {
-            print("this is a test gun");
-        }
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -85,5 +71,10 @@ public class Character : MonoBehaviour, IDamageable
         }
 
         weapon = null;
+    }
+
+    public void SetTeam(string teamName)
+    {
+        this.teamName = teamName;
     }
 }
