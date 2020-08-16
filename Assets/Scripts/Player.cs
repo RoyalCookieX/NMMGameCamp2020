@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : Character
 {
     [SerializeField] Camera cam; //Temporary
+    [SerializeField] Rect healthRect;
+    [SerializeField] Rect ammoRect;
+    [SerializeField] Rect cooldownRect;
+    [SerializeField] Gradient gradient;
 
     private void Start()
     {
@@ -24,5 +28,16 @@ public class Player : Character
             if (Input.GetButtonDown("Fire2")) weapon.Reload();
             if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
         }
+    }
+
+    private void OnGUI()
+    {
+        GUI.color = gradient.Evaluate(1 - (Health / 100));
+        GUI.Label(healthRect, $"Health: {Health}");
+        if (!weapon) return;
+        GUI.color = gradient.Evaluate(1 - ((float)weapon.CurAmmo / weapon.GetData().ammo));
+        GUI.Label(ammoRect, $"Ammo: {weapon.CurAmmo}/{weapon.GetData().ammo}");
+        GUI.color = gradient.Evaluate(weapon.CurCooldown * weapon.GetData().fireRate);
+        GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurCooldown * weapon.GetData().fireRate * 100) / 100}");
     }
 }

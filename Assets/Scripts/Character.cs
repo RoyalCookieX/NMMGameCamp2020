@@ -40,6 +40,9 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+        HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + Random.insideUnitSphere * .7f, Quaternion.identity);
+        hitParticle.SetText(damage);
+        hitParticle.SetColor(Color.red);
         if (health <= 0) Die();
     }
 
@@ -50,11 +53,13 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void EquipWeapon(Weapon weapon)
     {
+        if (this.weapon) return;
         this.weapon = weapon;
         weapon.TeamColor = team.Color;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
+            rb.velocity = Vector2.zero;
             rb.isKinematic = true;
         }
 
@@ -66,6 +71,8 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void DropWeapon()
     {
+        if (!weapon) return;
+
         weapon.transform.parent = null;
         weapon.transform.position = transform.position - Vector3.up;
         weapon.transform.rotation = Quaternion.identity;

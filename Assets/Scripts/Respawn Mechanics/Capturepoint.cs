@@ -31,7 +31,6 @@ public class Capturepoint : Spawnpoint
     void OnCaptured(TeamData team)
     {
         if (!team) return;
-        print($"{team.TeamName} has captured a spawnpoint!");
         onCaptureEvent?.Invoke(team, this);
         base.team = team;
         teamProgress = new Dictionary<TeamData, float>();

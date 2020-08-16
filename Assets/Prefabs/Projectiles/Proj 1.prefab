@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Proj 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7164067974058724035, guid: d72eb434ef974e740a46a339a6acb1c4,
+        type: 3}
+      propertyPath: maxLifetime
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7164067974058724044, guid: d72eb434ef974e740a46a339a6acb1c4,
         type: 3}
       propertyPath: m_LocalPosition.x

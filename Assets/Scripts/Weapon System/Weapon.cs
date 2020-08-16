@@ -33,6 +33,10 @@ public abstract class Weapon : MonoBehaviour
         {
             CurCooldown -= Time.deltaTime;
         }
+        else
+        {
+            CurCooldown = 0;
+        }
     }
 
     private void OnDestroy()
@@ -50,7 +54,7 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
-    public GameObject GetFromPool(Vector3 position, Quaternion rotation)
+    GameObject GetFromPool(Vector3 position, Quaternion rotation)
     {
         GameObject obj = pool.Dequeue();
 
