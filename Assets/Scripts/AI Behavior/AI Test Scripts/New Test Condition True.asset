@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 199673320834d304b8c33d6d7c577d96, type: 3}
-  m_Name: New Test Printer
+  m_Script: {fileID: 11500000, guid: 8f09603a735fdc548a7d83c3cdc3b125, type: 3}
+  m_Name: New Test Condition True
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  stateMachine: {fileID: 0}
   parentNode: {fileID: 0}

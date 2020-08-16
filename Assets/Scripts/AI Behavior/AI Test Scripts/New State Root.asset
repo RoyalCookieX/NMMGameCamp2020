@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d1b887de1c34944bb4d33a7dcb1129, type: 3}
+  m_Name: New State Root
+  m_EditorClassIdentifier: 
+  stateMachine: {fileID: 0}
+  parentNode: {fileID: 0}
+  conditions: []
+  nodes:
+  - {fileID: 11400000, guid: abc5d2a4036ff024eacc803d16088504, type: 2}
+  - {fileID: 11400000, guid: f629f9a66d3bef2419149d5126cb4c7b, type: 2}
+  currentNode: {fileID: 0}

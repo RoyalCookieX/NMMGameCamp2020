@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ccdb94a40eed4d4d90c0eaf6972cc43, type: 3}
-  m_Name: New Tester Always True
+  m_Script: {fileID: 11500000, guid: 81cd47df5adf43445b0f69ffdea074ba, type: 3}
+  m_Name: New State Sequencer
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  stateMachine: {fileID: 0}
   parentNode: {fileID: 0}
+  conditions: []
+  nodes: []
+  currentNode: {fileID: 0}

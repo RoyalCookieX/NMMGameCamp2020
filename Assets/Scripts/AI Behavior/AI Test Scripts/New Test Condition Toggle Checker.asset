@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71f96947f9d4dd644a4092e40974153c, type: 3}
-  m_Name: New State Root
+  m_Script: {fileID: 11500000, guid: db1d42d1b58344747b6b2c49a2fb9482, type: 3}
+  m_Name: New Test Condition Toggle Checker
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  stateMachine: {fileID: 0}
   parentNode: {fileID: 0}
-  conditions: []
-  nodes:
-  - {fileID: 11400000, guid: c6157b00dd5c38249940f253f75ca8a3, type: 2}
-  currentNode: {fileID: 0}

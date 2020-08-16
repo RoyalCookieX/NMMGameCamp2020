@@ -901,7 +901,7 @@ GameObject:
   - component: {fileID: 1899193892}
   - component: {fileID: 1899193891}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: AI Tester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,10 +916,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1899193890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: befb61ee302d77f49866b248549380a5, type: 3}
+  m_Script: {fileID: 11500000, guid: a299941310e223c468132febdb65db78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rootNode: {fileID: 11400000, guid: 25d77f3b199b05d4e80cf34901429d71, type: 2}
+  behaviorTree: {fileID: 11400000, guid: 8b7dc8ba64a5ce14b9220d37b8495619, type: 2}
+  toggleTest: 0
 --- !u!136 &1899193892
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -989,7 +990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899193890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.721, y: 2.977, z: -0.08422083}
+  m_LocalPosition: {x: -2.9, y: 0.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
