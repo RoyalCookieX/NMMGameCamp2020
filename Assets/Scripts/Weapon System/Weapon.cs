@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
+public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected Queue<GameObject> pool;
     public Queue<GameObject> Pool { get { return pool; } }
     public int Size { get; set; } = 10;
+    public Color TeamColor { get; set; }
 
     [SerializeField] protected WeaponData data;
     [SerializeField] protected Transform firePoint;
@@ -59,7 +60,7 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
 
         if(obj.TryGetComponent(out IPoolObject poolObject))
         {
-            poolObject.OnSpawnObject();
+            poolObject.OnSpawnObject(this);
         }
 
         pool.Enqueue(obj);

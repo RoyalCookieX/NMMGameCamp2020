@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPoolObject
 {
-    void OnSpawnObject();
+    void OnSpawnObject(object spawnedBy);
 }

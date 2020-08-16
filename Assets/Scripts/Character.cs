@@ -9,13 +9,18 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] protected string teamName;
+    [SerializeField] protected TeamData team;
 
     [Space]
     [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
+
+    private void OnEnable()
+    {
+        health = 100;
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -46,6 +51,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void EquipWeapon(Weapon weapon)
     {
         this.weapon = weapon;
+        weapon.TeamColor = team.Color;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -70,11 +76,12 @@ public abstract class Character : MonoBehaviour, IDamageable
             rb.isKinematic = false;
         }
 
+        weapon.TeamColor = Color.white;
         weapon = null;
     }
 
-    public void SetTeam(string teamName)
+    public void SetTeam(TeamData data)
     {
-        this.teamName = teamName;
+        team = data;
     }
 }

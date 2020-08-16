@@ -4,41 +4,36 @@ using UnityEngine;
 
 public class Capturepoint : Spawnpoint
 {
-    public delegate void OnCapture(string teamName, Capturepoint capturepoint);
+    public delegate void OnCapture(TeamData teamName, Capturepoint capturepoint);
     public event OnCapture onCaptureEvent;
-    public Dictionary<string, float> teamProgress;
+    public Dictionary<TeamData, float> teamProgress;
     public float maxProgress = 10;
 
     private void Start()
     {
-        teamProgress = new Dictionary<string, float>();
+        teamProgress = new Dictionary<TeamData, float>();
     }
 
-    public void AddProgress(string teamName)
+    [ContextMenu("Update Capturepoint")]
+    void UpdateCapturepoint()
     {
-        if (teamName == TeamName) return;
-        if (!teamProgress.ContainsKey(teamName)) teamProgress.Add(teamName, 0);
-        if(teamProgress[teamName] < maxProgress) teamProgress[teamName] += Time.deltaTime;
-        if (teamProgress[teamName] >= maxProgress) OnCaptured(teamName);
+        OnCaptured(team);
     }
 
-    [ContextMenu("Blue Capture")]
-    public void BlueCapture()
+    public void AddProgress(TeamData team)
     {
-        OnCaptured("Blue");
+        if (base.team == team) return;
+        if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
+        if(teamProgress[team] < maxProgress) teamProgress[team] += Time.deltaTime;
+        else OnCaptured(team);
     }
 
-    [ContextMenu("Red Capture")]
-    public void RedCapture()
+    void OnCaptured(TeamData team)
     {
-        OnCaptured("Red");
-    }
-
-    void OnCaptured(string teamName)
-    {
-        print($"{teamName} has captured a spawnpoint!");
-        onCaptureEvent?.Invoke(teamName, this);
-        TeamName = teamName;
-        teamProgress = new Dictionary<string, float>();
+        if (!team) return;
+        print($"{team.TeamName} has captured a spawnpoint!");
+        onCaptureEvent?.Invoke(team, this);
+        base.team = team;
+        teamProgress = new Dictionary<TeamData, float>();
     }
 }
