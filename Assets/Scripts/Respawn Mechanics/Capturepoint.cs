@@ -20,11 +20,11 @@ public class Capturepoint : Spawnpoint
         OnCaptured(team);
     }
 
-    public void AddProgress(TeamData team)
+    public void AddProgress(TeamData team, float progressToAdd = 0.01f)
     {
         if (base.team == team) return;
         if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
-        if(teamProgress[team] < maxProgress) teamProgress[team] += Time.deltaTime;
+        if(teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
         else OnCaptured(team);
     }
 

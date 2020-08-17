@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     [SerializeField] float maxLifetime = 1;
     [SerializeField] float speed = 10;
     float curLifetime = 1;
+    TeamData teamData;
 
     private void Update()
     {
@@ -31,16 +32,21 @@ public class Projectile : MonoBehaviour, IPoolObject
     {
         if (collision.transform.TryGetComponent(out IDamageable damageable))
         {
+            if(collision.transform.TryGetComponent(out Character character))
+            {
+                if (character.TeamData.TeamName == teamData.TeamName) return;
+            }
             damageable.TakeDamage(damage);
             gameObject.SetActive(false);
         }
     }
 
-    public void OnSpawnObject(object spawnedBy)
+    public void OnSpawnObject(params object[] args)
     {
         curLifetime = maxLifetime;
         rb.velocity = transform.right * speed;
 
-        spriteRenderer.color = ((Weapon)spawnedBy).TeamColor;
+        teamData = ((Weapon)args[0]).teamData;
+        spriteRenderer.color = teamData.Color;
     }
 }

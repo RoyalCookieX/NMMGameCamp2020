@@ -7,9 +7,9 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected Queue<GameObject> pool;
     public Queue<GameObject> Pool { get { return pool; } }
     public int Size { get; set; } = 10;
-    public Color TeamColor { get; set; }
+    public TeamData teamData;
 
-    [SerializeField] protected WeaponData data;
+    [SerializeField] protected WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
     public float CurCooldown { get; private set; }
@@ -20,11 +20,11 @@ public abstract class Weapon : MonoBehaviour
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {
-            GameObject obj = Instantiate(data.projectile.gameObject);
+            GameObject obj = Instantiate(weaponData.projectile.gameObject);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
-        CurAmmo = data.ammo;
+        CurAmmo = weaponData.ammo;
     }
 
     protected virtual void Update()
@@ -49,7 +49,7 @@ public abstract class Weapon : MonoBehaviour
         if (CurCooldown <= 0 && CurAmmo > 0)
         {
             CurAmmo--;
-            CurCooldown = 1f / data.fireRate;
+            CurCooldown = 1f / weaponData.fireRate;
             GetFromPool(firePoint.position, firePoint.rotation);
         }
     }
@@ -82,8 +82,8 @@ public abstract class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        CurAmmo = data.ammo;
+        CurAmmo = weaponData.ammo;
     }
 
-    public WeaponData GetData() { return data; }
+    public WeaponData GetData() { return weaponData; }
 }

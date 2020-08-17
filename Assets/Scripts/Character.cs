@@ -9,7 +9,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] protected TeamData team;
+    [SerializeField] public TeamData TeamData { get; protected set; }
 
     [Space]
     [Header("Characrter Properties")]
@@ -55,7 +55,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     {
         if (this.weapon) return;
         this.weapon = weapon;
-        weapon.TeamColor = team.Color;
+        weapon.teamData = TeamData;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -83,12 +83,12 @@ public abstract class Character : MonoBehaviour, IDamageable
             rb.isKinematic = false;
         }
 
-        weapon.TeamColor = Color.white;
+        weapon.teamData = null;
         weapon = null;
     }
 
     public void SetTeam(TeamData data)
     {
-        team = data;
+        TeamData = data;
     }
 }
