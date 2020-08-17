@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class StateComposite : StateNode
 {
-<<<<<<< HEAD
     public List<StateCondition> conditions;
     public List<StateNode> nodes;
     [HideInInspector] public StateNode currentNode;
@@ -81,9 +80,4 @@ public abstract class StateComposite : StateNode
         currentNode.OnExit();
         currentNode = null;
     }
-=======
-    public abstract void Success(StateNode finishedNode);
-
-    public abstract void Fail(StateNode finishedNode);
->>>>>>> Dev
 }

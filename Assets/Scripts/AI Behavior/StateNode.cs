@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class StateNode : ScriptableObject
 {
-<<<<<<< HEAD
     [HideInInspector] public StateMachine stateMachine;
 
     [HideInInspector] public StateComposite parentNode;
@@ -16,26 +15,13 @@ public abstract class StateNode : ScriptableObject
 
     public virtual void OnEnter()
     {
-=======
-    public Character character;
-
-    public virtual void InitializeNode(Character character){
-        this.character = character;
-    }
-
-    public virtual void OnEnter(){
->>>>>>> Dev
 
     }
 
     public abstract void Tick();
 
-<<<<<<< HEAD
     public virtual void OnExit()
     {
-=======
-    public virtual void OnExit(){
->>>>>>> Dev
 
     }
 }
