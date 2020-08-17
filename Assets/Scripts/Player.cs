@@ -37,14 +37,11 @@ public class Player : Character
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            print("e");
             Collider2D col = Physics2D.OverlapCircle(transform.position, .75f, weaponMask);
             if (col)
             {
-                print(col.transform.name);
                 if (col.transform.TryGetComponent(out Weapon weapon))
                 {
-                    print("weapon");
                     if (weapon) DropWeapon();
                     EquipWeapon(weapon);
                 }
