@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AreaCapture : MonoBehaviour
 {
+    public Vector3 speed;
     public float red;
     public float blue;
     // Start is called before the first frame update
@@ -16,18 +17,14 @@ public class AreaCapture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(speed * Time.deltaTime); 
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "red")
+         if(other.TryGetComponent(out Character character))
         {
-            red += 10;
-        }
-        else
-        {
-            if (other.gameObject.tag == "blue")
-                blue += 10;
+            //get character's team
+
         }
     }
     void OnGUI()
