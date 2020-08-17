@@ -9,7 +9,8 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] protected string teamName;
+    [SerializeField] protected LayerMask weaponMask;
+    [SerializeField] public TeamData TeamData { get; protected set; }
 
     [Space]
     [Header("Characrter Properties")]
@@ -17,12 +18,9 @@ public abstract class Character : MonoBehaviour, IDamageable
     public float Health { get { return health; } }
     public bool invert;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnEnable()
     {
-        if(collision.transform.TryGetComponent(out Weapon weapon))
-        {
-            EquipWeapon(weapon);
-        }
+        health = 100;
     }
 
     protected virtual void SetArmAngle(float angle)
@@ -35,21 +33,32 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+        HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + Random.insideUnitSphere * .7f, Quaternion.identity);
+        hitParticle.SetText(damage);
+        hitParticle.SetColor(Color.red);
         if (health <= 0) Die();
     }
 
     public virtual void Die()
     {
+        DropWeapon();
         gameObject.SetActive(false);
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
+        if (this.weapon) return;
         this.weapon = weapon;
+        weapon.teamData = TeamData;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
+            rb.velocity = Vector2.zero;
             rb.isKinematic = true;
+        }
+        if(weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = false;
         }
 
         weapon.transform.parent = weaponPoint;
@@ -60,6 +69,8 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void DropWeapon()
     {
+        if (!weapon) return;
+
         weapon.transform.parent = null;
         weapon.transform.position = transform.position - Vector3.up;
         weapon.transform.rotation = Quaternion.identity;
@@ -69,12 +80,17 @@ public abstract class Character : MonoBehaviour, IDamageable
         {
             rb.isKinematic = false;
         }
+        if (weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = true;
+        }
 
+        weapon.teamData = null;
         weapon = null;
     }
 
-    public void SetTeam(string teamName)
+    public void SetTeam(TeamData data)
     {
-        this.teamName = teamName;
+        TeamData = data;
     }
 }
