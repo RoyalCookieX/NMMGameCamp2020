@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 {
-    [SerializeField] string teamName;
-    public string TeamName { get { return teamName; } private set { } }
+    [SerializeField] TeamData team;
+    public TeamData Team { get { return team; } private set { } }
 
     [SerializeField] List<Character> teamList;
     [SerializeField] List<Spawnpoint> spawnpoints;
@@ -18,7 +18,7 @@ public class TeamManager : MonoBehaviour
         spawnpoints = new List<Spawnpoint>();
         foreach (Spawnpoint spawnpoint in FindObjectsOfType<Spawnpoint>())
         {
-            if (spawnpoint.TeamName == TeamName) spawnpoints.Add(spawnpoint);
+            if (spawnpoint.team == team) spawnpoints.Add(spawnpoint);
             if(spawnpoint.GetType() == typeof(Capturepoint))
             {
                 ((Capturepoint)spawnpoint).onCaptureEvent += TeamManager_onCaptureEvent;
@@ -31,6 +31,7 @@ public class TeamManager : MonoBehaviour
         {
             Character character = Instantiate(teamList[i], startSpawnpoint.position, startSpawnpoint.rotation);
             character.gameObject.SetActive(false);
+            character.SetTeam(team);
             teamList[i] = character;
         }
     }
@@ -47,9 +48,9 @@ public class TeamManager : MonoBehaviour
         }
     }
 
-    private void TeamManager_onCaptureEvent(string teamName, Capturepoint capturepoint)
+    private void TeamManager_onCaptureEvent(TeamData team, Capturepoint capturepoint)
     {
-        if(this.teamName == teamName)
+        if(this.team == team)
         {
             if (!spawnpoints.Contains(capturepoint)) spawnpoints.Add(capturepoint);
         }

@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
+public abstract class Weapon : MonoBehaviour
 {
     [SerializeField] protected Queue<GameObject> pool;
     public Queue<GameObject> Pool { get { return pool; } }
     public int Size { get; set; } = 10;
+    public TeamData teamData;
 
-    [SerializeField] protected WeaponData data;
+    [SerializeField] protected WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
     public float CurCooldown { get; private set; }
@@ -19,11 +20,11 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {
-            GameObject obj = Instantiate(data.projectile.gameObject);
+            GameObject obj = Instantiate(weaponData.projectile.gameObject);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
-        CurAmmo = data.ammo;
+        CurAmmo = weaponData.ammo;
     }
 
     protected virtual void Update()
@@ -31,6 +32,10 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
         if(gameObject.activeInHierarchy && CurCooldown > 0)
         {
             CurCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            CurCooldown = 0;
         }
     }
 
@@ -44,12 +49,12 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
         if (CurCooldown <= 0 && CurAmmo > 0)
         {
             CurAmmo--;
-            CurCooldown = 1f / data.fireRate;
+            CurCooldown = 1f / weaponData.fireRate;
             GetFromPool(firePoint.position, firePoint.rotation);
         }
     }
 
-    public GameObject GetFromPool(Vector3 position, Quaternion rotation)
+    GameObject GetFromPool(Vector3 position, Quaternion rotation)
     {
         GameObject obj = pool.Dequeue();
 
@@ -59,7 +64,7 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
 
         if(obj.TryGetComponent(out IPoolObject poolObject))
         {
-            poolObject.OnSpawnObject();
+            poolObject.OnSpawnObject(this);
         }
 
         pool.Enqueue(obj);
@@ -77,8 +82,9 @@ public abstract class Weapon : MonoBehaviour, IObjectPooler<GameObject>
 
     public void Reload()
     {
-        CurAmmo = data.ammo;
+        CurCooldown = 1f / weaponData.fireRate;
+        CurAmmo = weaponData.ammo;
     }
 
-    public WeaponData GetData() { return data; }
+    public WeaponData GetData() { return weaponData; }
 }
