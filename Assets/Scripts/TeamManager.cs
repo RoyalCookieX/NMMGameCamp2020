@@ -9,24 +9,23 @@ public class TeamManager : MonoBehaviour
     public TeamData Team { get { return team; } private set { } }
 
     [SerializeField] List<Character> teamList;
-    [SerializeField] List<Spawnpoint> spawnpoints;
     [SerializeField] float radius = 1;
 
     [ContextMenu("Start Game")]
     void OnStartGame()
     {
-        spawnpoints = new List<Spawnpoint>();
+        team.teamSpawnpoints = new List<Spawnpoint>();
         foreach (Spawnpoint spawnpoint in FindObjectsOfType<Spawnpoint>())
         {
-            if (spawnpoint.team == team) spawnpoints.Add(spawnpoint);
+            if (spawnpoint.team == team) team.teamSpawnpoints.Add(spawnpoint);
             if(spawnpoint.GetType() == typeof(Capturepoint))
             {
                 ((Capturepoint)spawnpoint).onCaptureEvent += TeamManager_onCaptureEvent;
             }
         }
 
-        if (spawnpoints.Count == 0) return;
-        Transform startSpawnpoint = spawnpoints[0].transform;
+        if (team.teamSpawnpoints.Count == 0) return;
+        Transform startSpawnpoint = team.teamSpawnpoints[0].transform;
         for(int i = 0; i < teamList.Count; i++)
         {
             Character character = Instantiate(teamList[i], startSpawnpoint.position, startSpawnpoint.rotation);
@@ -39,7 +38,7 @@ public class TeamManager : MonoBehaviour
     [ContextMenu("End Game")]
     void OnEndGame()
     {
-        foreach(Spawnpoint spawnpoint in spawnpoints)
+        foreach(Spawnpoint spawnpoint in team.teamSpawnpoints)
         {
             if (spawnpoint.GetType() == typeof(Capturepoint))
             {
@@ -52,11 +51,11 @@ public class TeamManager : MonoBehaviour
     {
         if(this.team == team)
         {
-            if (!spawnpoints.Contains(capturepoint)) spawnpoints.Add(capturepoint);
+            if (!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
         }
         else
         {
-            if (spawnpoints.Contains(capturepoint)) spawnpoints.Remove(capturepoint);
+            if (team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Remove(capturepoint);
         }
     }
 
@@ -68,22 +67,22 @@ public class TeamManager : MonoBehaviour
     [ContextMenu("Capturepoint Test")]
     public void CapturepointTest()
     {
-        if (spawnpoints.Count < 2) return;
+        if (team.teamSpawnpoints.Count < 2) return;
         SpawnCharacter(0, 1);
     }
 
     [ContextMenu("Spawnpoint Test")]
     public void SpawnpointTest()
     {
-        if (spawnpoints.Count < 1) return;
+        if (team.teamSpawnpoints.Count < 1) return;
         SpawnCharacter(0, 0);
     }
 
 
     public void SpawnCharacter(int characterIndex, int spawnpointIndex)
     {
-        if (spawnpoints.Count == 0) return;
-        Transform point = spawnpoints[spawnpointIndex].transform;
+        if (team.teamSpawnpoints.Count == 0) return;
+        Transform point = team.teamSpawnpoints[spawnpointIndex].transform;
         teamList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         teamList[characterIndex].transform.rotation = point.rotation;
 

@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour, IPoolObject
         {
             if(collision.transform.TryGetComponent(out Character character))
             {
-                if (character.TeamData.TeamName == teamData.TeamName) return;
+                if (character.TeamData.teamName == teamData.teamName) return;
             }
             damageable.TakeDamage(damage);
             gameObject.SetActive(false);
@@ -47,6 +47,6 @@ public class Projectile : MonoBehaviour, IPoolObject
         rb.velocity = transform.right * speed;
 
         teamData = ((Weapon)args[0]).teamData;
-        spriteRenderer.color = teamData.Color;
+        spriteRenderer.color = teamData.teamColor;
     }
 }
