@@ -64,10 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ScriptableObjects\WeaponData.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\AI Test Scripts\TestActionSuccess.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\AI Test Scripts\TestActionSuccessTwo.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\AI Test Scripts\TestConditionToggleChecker.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\AI Test Scripts\TestConditionTrue.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateRoot.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateSelector.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateSequencer.cs" />

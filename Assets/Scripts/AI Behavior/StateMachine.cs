@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
-    public StateRoot behaviorTree;
-    public bool toggleTest;
+    public StateRoot rootNode;
 
     void Awake()
     {
-        behaviorTree.InitializeNode(this);
+        rootNode.InitializeNode(this);
     }
 
     void Update()
     {
-        behaviorTree.Tick();
+        rootNode.Tick();
     }
 }
