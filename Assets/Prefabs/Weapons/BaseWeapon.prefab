@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2215678048041569723}
   - component: {fileID: 1857470552705690970}
   - component: {fileID: 3381333192307751951}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5573b6342eb454cb9bb6c4617772ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 6ff5f86db61aaad408191d9168822e5e, type: 2}
+  teamData: {fileID: 0}
+  weaponData: {fileID: 0}
   firePoint: {fileID: 4154086748857814713}
 --- !u!70 &1857470552705690970
 CapsuleCollider2D:
@@ -110,7 +111,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.060000002, y: 0.034999996}
@@ -146,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4154086748857814713}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

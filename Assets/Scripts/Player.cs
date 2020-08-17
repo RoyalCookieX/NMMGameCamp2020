@@ -35,12 +35,27 @@ public class Player : Character
             SetArmAngle(angle);
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            print("e");
+            Collider2D col = Physics2D.OverlapCircle(transform.position, .75f, weaponMask);
+            if (col)
+            {
+                print(col.transform.name);
+                if (col.transform.TryGetComponent(out Weapon weapon))
+                {
+                    print("weapon");
+                    if (weapon) DropWeapon();
+                    EquipWeapon(weapon);
+                }
+            }
+        }
+
         if (weapon)
         {
             if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
             else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
-            if (Input.GetButtonDown("Fire2")) weapon.Reload();
-            if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
+            if (Input.GetKeyDown(KeyCode.R)) weapon.Reload();
         }
 
         //From Playermov.cs
@@ -52,6 +67,18 @@ public class Player : Character
 
         transform.Translate(dir * smoothSpeed * Time.deltaTime);
     }
+
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (other.transform.TryGetComponent(out Weapon weapon))
+    //    {
+    //        if (Input.GetKeyDown(KeyCode.E))
+    //        {
+    //            if(weapon) DropWeapon();
+    //            EquipWeapon(weapon);
+    //        }
+    //    }
+    //}
 
     private void OnGUI()
     {

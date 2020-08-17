@@ -383,7 +383,9 @@ MonoBehaviour:
   characterGraphics: {fileID: 2252159496151771834}
   arm: {fileID: 2252159496325888322}
   weaponPoint: {fileID: 2252159496090750952}
-  team: {fileID: 0}
+  weaponMask:
+    serializedVersion: 2
+    m_Bits: 256
   invert: 0
   healthRect:
     serializedVersion: 2

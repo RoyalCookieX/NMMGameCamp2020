@@ -229,7 +229,7 @@ PrefabInstance:
     - target: {fileID: 949984001667978118, guid: ac459255502e5b64db4afc206a2d80e5,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792904809883440248, guid: ac459255502e5b64db4afc206a2d80e5,
         type: 3}
@@ -239,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 6792904809883440248, guid: ac459255502e5b64db4afc206a2d80e5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.23
+      value: 1.979
       objectReference: {fileID: 0}
     - target: {fileID: 6792904809883440248, guid: ac459255502e5b64db4afc206a2d80e5,
         type: 3}
@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: 3102908865695216536, guid: d8a8ba2972482b94a94af5877bf101cd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8675486122302780518, guid: d8a8ba2972482b94a94af5877bf101cd,
         type: 3}
@@ -756,7 +756,8 @@ MonoBehaviour:
   team: {fileID: 11400000, guid: 0cbf3f42de157c448932feca16be2010, type: 2}
   teamList:
   - {fileID: 2252159497235502749, guid: 86aba06bb74431840b4097cca40bfb92, type: 3}
-  spawnpoints: []
+  spawnpoints:
+  - {fileID: 442649668}
   radius: 1
 --- !u!4 &1208835327
 Transform:
@@ -787,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 3586138720211004245, guid: 5b8e53dee7c512e419a6e02d0f8ad61f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.23
+      value: 2.481
       objectReference: {fileID: 0}
     - target: {fileID: 3586138720211004245, guid: 5b8e53dee7c512e419a6e02d0f8ad61f,
         type: 3}
@@ -842,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 7110829424453299371, guid: 5b8e53dee7c512e419a6e02d0f8ad61f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b8e53dee7c512e419a6e02d0f8ad61f, type: 3}

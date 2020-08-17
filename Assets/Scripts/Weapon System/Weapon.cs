@@ -82,6 +82,7 @@ public abstract class Weapon : MonoBehaviour
 
     public void Reload()
     {
+        CurCooldown = 1f / weaponData.fireRate;
         CurAmmo = weaponData.ammo;
     }
 

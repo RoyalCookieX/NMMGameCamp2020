@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
+    [SerializeField] protected LayerMask weaponMask;
     [SerializeField] public TeamData TeamData { get; protected set; }
 
     [Space]
@@ -20,14 +21,6 @@ public abstract class Character : MonoBehaviour, IDamageable
     private void OnEnable()
     {
         health = 100;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.transform.TryGetComponent(out Weapon weapon))
-        {
-            EquipWeapon(weapon);
-        }
     }
 
     protected virtual void SetArmAngle(float angle)
@@ -48,6 +41,7 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void Die()
     {
+        DropWeapon();
         gameObject.SetActive(false);
     }
 
@@ -61,6 +55,10 @@ public abstract class Character : MonoBehaviour, IDamageable
         {
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
+        }
+        if(weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = false;
         }
 
         weapon.transform.parent = weaponPoint;
@@ -81,6 +79,10 @@ public abstract class Character : MonoBehaviour, IDamageable
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
+        }
+        if (weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = true;
         }
 
         weapon.teamData = null;
