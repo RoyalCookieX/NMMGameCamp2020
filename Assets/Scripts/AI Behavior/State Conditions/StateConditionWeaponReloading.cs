@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "State Nodes/Conditions/Has Target")]
-public class StateConditionHasTarget : StateCondition
+[CreateAssetMenu(menuName = "State Nodes/Conditions/Weapon Reloading")]
+public class StateConditionWeaponReloading : StateCondition
 {
     public override bool CheckCondition()
     {
-        if (stateMachine.nonPlayerCharacter.target)
+        if (stateMachine.nonPlayerCharacter.weapon.CurrentCooldown > 0)
         {
             return true;
         }

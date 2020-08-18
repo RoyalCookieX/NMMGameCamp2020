@@ -82,9 +82,9 @@ public class Player : Character
         GUI.color = gradient.Evaluate(1 - (Health / 100));
         GUI.Label(healthRect, $"Health: {Health}");
         if (!weapon) return;
-        GUI.color = gradient.Evaluate(1 - ((float)weapon.CurAmmo / weapon.GetData().ammo));
-        GUI.Label(ammoRect, $"Ammo: {weapon.CurAmmo}/{weapon.GetData().ammo}");
-        GUI.color = gradient.Evaluate(weapon.CurCooldown * weapon.GetData().fireRate);
-        GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurCooldown * weapon.GetData().fireRate * 100) / 100}");
+        GUI.color = gradient.Evaluate(1 - ((float)weapon.CurrentAmmo / weapon.GetData().ammo));
+        GUI.Label(ammoRect, $"Ammo: {weapon.CurrentAmmo}/{weapon.GetData().ammo}");
+        GUI.color = gradient.Evaluate(weapon.CurrentCooldown * weapon.GetData().fireRate);
+        GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurrentCooldown * weapon.GetData().fireRate * 100) / 100}");
     }
 }

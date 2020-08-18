@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour, IDamageable
 {
     [Header("Character Components")]
-    [SerializeField] protected Weapon weapon = null;
+    public Weapon weapon = null;
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
@@ -13,7 +13,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] public TeamData TeamData { get; protected set; }
 
     [Space]
-    [Header("Characrter Properties")]
+    [Header("Character Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;

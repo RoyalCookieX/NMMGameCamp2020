@@ -12,11 +12,12 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
-    public float CurCooldown { get; private set; }
-    public int CurAmmo { get; private set; }
+    public float CurrentCooldown { get; private set; }
+    public int CurrentAmmo { get; private set; }
 
     protected virtual void Start()
     {
+        print("GENERATING POOL");
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {
@@ -24,18 +25,18 @@ public abstract class Weapon : MonoBehaviour
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
-        CurAmmo = weaponData.ammo;
+        CurrentAmmo = weaponData.ammo;
     }
 
     protected virtual void Update()
     {
-        if(gameObject.activeInHierarchy && CurCooldown > 0)
+        if(gameObject.activeInHierarchy && CurrentCooldown > 0)
         {
-            CurCooldown -= Time.deltaTime;
+            CurrentCooldown -= Time.deltaTime;
         }
         else
         {
-            CurCooldown = 0;
+            CurrentCooldown = 0;
         }
     }
 
@@ -46,10 +47,10 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Fire()
     {
-        if (CurCooldown <= 0 && CurAmmo > 0)
+        if (CurrentCooldown <= 0 && CurrentAmmo > 0)
         {
-            CurAmmo--;
-            CurCooldown = 1f / weaponData.fireRate;
+            CurrentAmmo--;
+            CurrentCooldown = 1f / weaponData.fireRate;
             GetFromPool(firePoint.position, firePoint.rotation);
         }
     }
@@ -82,8 +83,8 @@ public abstract class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        CurCooldown = 1f / weaponData.fireRate;
-        CurAmmo = weaponData.ammo;
+        CurrentCooldown = 1f / weaponData.fireRate;
+        CurrentAmmo = weaponData.ammo;
     }
 
     public WeaponData GetData() { return weaponData; }
