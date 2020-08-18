@@ -391,20 +391,20 @@ MonoBehaviour:
     serializedVersion: 2
     x: 10
     y: 10
-    width: 100
-    height: 100
+    width: 200
+    height: 200
   ammoRect:
     serializedVersion: 2
     x: 10
-    y: 25
-    width: 100
-    height: 100
+    y: 30
+    width: 200
+    height: 200
   cooldownRect:
     serializedVersion: 2
     x: 10
-    y: 40
-    width: 100
-    height: 100
+    y: 50
+    width: 200
+    height: 200
   gradient:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 0, a: 1}

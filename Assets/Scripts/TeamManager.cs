@@ -8,24 +8,39 @@ public class TeamManager : MonoBehaviour
     [SerializeField] TeamData team;
     public TeamData Team { get { return team; } private set { } }
 
+    [SerializeField] List<Spawnpoint> teamSpawnpoints;
+    [SerializeField] List<Capturepoint> uncapturedpoints;
     [SerializeField] List<Character> teamList;
     [SerializeField] float radius = 1;
 
     [ContextMenu("Start Game")]
     void OnStartGame()
     {
-        team.teamSpawnpoints = new List<Spawnpoint>();
+        //reset spawnpoints
+        teamSpawnpoints = new List<Spawnpoint>();
+        uncapturedpoints = new List<Capturepoint>();
+
+        //initalize spawnpoints
         foreach (Spawnpoint spawnpoint in FindObjectsOfType<Spawnpoint>())
         {
-            if (spawnpoint.team == team) team.teamSpawnpoints.Add(spawnpoint);
+            if (spawnpoint.team == team) teamSpawnpoints.Add(spawnpoint);
             if(spawnpoint.GetType() == typeof(Capturepoint))
             {
+                //subscribing each capturepoint's event to TeamManager_onCaptureEvent method
                 ((Capturepoint)spawnpoint).onCaptureEvent += TeamManager_onCaptureEvent;
+                if (spawnpoint.team != team) uncapturedpoints.Add((Capturepoint)spawnpoint);
             }
         }
 
-        if (team.teamSpawnpoints.Count == 0) return;
-        Transform startSpawnpoint = team.teamSpawnpoints[0].transform;
+        //gets the first spawnpoint
+        if (teamSpawnpoints.Count == 0)
+        {
+            Debug.LogError($"{team.teamName} Team has no spawnpoints.");
+            return;
+        }
+        Transform startSpawnpoint = teamSpawnpoints[0].transform;
+
+        //initalizes characters and places them at startSpawnpoint
         for(int i = 0; i < teamList.Count; i++)
         {
             Character character = Instantiate(teamList[i], startSpawnpoint.position, startSpawnpoint.rotation);
@@ -38,24 +53,32 @@ public class TeamManager : MonoBehaviour
     [ContextMenu("End Game")]
     void OnEndGame()
     {
-        foreach(Spawnpoint spawnpoint in team.teamSpawnpoints)
+        //unsubscribes method from capturepoints
+        foreach(Capturepoint capturepoint in FindObjectsOfType<Capturepoint>())
         {
-            if (spawnpoint.GetType() == typeof(Capturepoint))
-            {
-                ((Capturepoint)spawnpoint).onCaptureEvent -= TeamManager_onCaptureEvent;
-            }
+            capturepoint.onCaptureEvent -= TeamManager_onCaptureEvent;
         }
     }
 
+    //calls every time a capturepoint gets captured by a team
     private void TeamManager_onCaptureEvent(TeamData team, Capturepoint capturepoint)
     {
+        //if this team captured a capturepoint
         if(this.team == team)
         {
-            if (!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
+            if (teamSpawnpoints.Contains(capturepoint)) return;
+
+            //add to teamSpawnpoints, remove from uncapturedpoints
+            teamSpawnpoints.Add(capturepoint);
+            uncapturedpoints.Remove(capturepoint);
         }
         else
         {
-            if (team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Remove(capturepoint);
+            if (!teamSpawnpoints.Contains(capturepoint)) return;
+
+            //remove from teamSpawnpoints, add to uncaptuedpoints
+            uncapturedpoints.Add(capturepoint);
+            teamSpawnpoints.Remove(capturepoint);
         }
     }
 
@@ -67,22 +90,21 @@ public class TeamManager : MonoBehaviour
     [ContextMenu("Capturepoint Test")]
     public void CapturepointTest()
     {
-        if (team.teamSpawnpoints.Count < 2) return;
+        if (teamSpawnpoints.Count < 2) return;
         SpawnCharacter(0, 1);
     }
 
     [ContextMenu("Spawnpoint Test")]
     public void SpawnpointTest()
     {
-        if (team.teamSpawnpoints.Count < 1) return;
+        if (teamSpawnpoints.Count < 1) return;
         SpawnCharacter(0, 0);
     }
 
-
     public void SpawnCharacter(int characterIndex, int spawnpointIndex)
     {
-        if (team.teamSpawnpoints.Count == 0) return;
-        Transform point = team.teamSpawnpoints[spawnpointIndex].transform;
+        if (teamSpawnpoints.Count == 0) return;
+        Transform point = teamSpawnpoints[spawnpointIndex].transform;
         teamList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         teamList[characterIndex].transform.rotation = point.rotation;
 

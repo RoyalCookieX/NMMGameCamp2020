@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BlueTeam
   m_EditorClassIdentifier: 
   teamName: Blue
-  color: {r: 0, g: 0, b: 1, a: 1}
+  teamColor: {r: 0, g: 0, b: 1, a: 1}

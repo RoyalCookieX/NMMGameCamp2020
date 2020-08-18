@@ -7,7 +7,4 @@ public class TeamData : ScriptableObject
 {
     public string teamName;
     public Color teamColor;
-
-    public List<Spawnpoint> teamSpawnpoints;
-
 }

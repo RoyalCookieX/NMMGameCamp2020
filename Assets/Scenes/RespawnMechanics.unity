@@ -151,10 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: {fileID: 11400000, guid: e3f1ee64b2eb53d4c97d386cd8699f3c, type: 2}
+  teamSpawnpoints: []
+  uncapturedpoints: []
   teamList:
   - {fileID: 3985694117098929674, guid: 50d46b08e3c76634cbcfc364eaffa2a3, type: 3}
-  spawnpoints:
-  - {fileID: 787229988}
   radius: 1
 --- !u!4 &284408539
 Transform:
@@ -754,10 +754,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   team: {fileID: 11400000, guid: 0cbf3f42de157c448932feca16be2010, type: 2}
+  teamSpawnpoints: []
+  uncapturedpoints: []
   teamList:
   - {fileID: 2252159497235502749, guid: 86aba06bb74431840b4097cca40bfb92, type: 3}
-  spawnpoints:
-  - {fileID: 442649668}
   radius: 1
 --- !u!4 &1208835327
 Transform:
