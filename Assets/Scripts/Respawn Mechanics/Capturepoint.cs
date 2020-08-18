@@ -8,10 +8,12 @@ public class Capturepoint : Spawnpoint
     public event OnCapture onCaptureEvent;
     public Dictionary<TeamData, float> teamProgress;
     public float maxProgress = 10;
+    public float radius;
 
     private void Start()
     {
         teamProgress = new Dictionary<TeamData, float>();
+        
     }
 
     [ContextMenu("Update Capturepoint")]
@@ -24,7 +26,7 @@ public class Capturepoint : Spawnpoint
     {
         if (base.team == team) return;
         if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
-        if(teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
+        if (teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
         else OnCaptured(team);
     }
 
@@ -35,12 +37,21 @@ public class Capturepoint : Spawnpoint
         base.team = team;
         teamProgress = new Dictionary<TeamData, float>();
     }
-    void OnTriggerEnter2D(Collider2D other)
+
+    bool PointInsideSphere(Vector2 center, float radius)
     {
-        if (other.TryGetComponent(out Character character))
+        Vector2 randomPoint = Random.insideUnitCircle;
+        bool payLoad = false;
+        var characters = GameObject.FindObjectsOfType<Character>();
+        foreach(Character character in characters)
         {
-            
-            //get character's team
+            //check if this character is in or out
+            Vector2 pos;
+            pos.x = character.transform.position.x;
+            pos.y = character.transform.position.y;
+
+            payLoad = Vector2.Distance(pos, center) < radius;
         }
+        return payLoad;
     }
-    }
+}
