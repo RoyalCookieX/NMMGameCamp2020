@@ -19,14 +19,8 @@ public class AreaCapture : MonoBehaviour
     {
         transform.Rotate(speed * Time.deltaTime); 
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-         if(other.TryGetComponent(out Character character))
-        {
-            //get character's team
-
-        }
-    }
+    
+    
     void OnGUI()
     {
         GUI.Label(new Rect(10, 30, 100, 35), "red: " + red);

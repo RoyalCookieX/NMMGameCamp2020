@@ -35,4 +35,12 @@ public class Capturepoint : Spawnpoint
         base.team = team;
         teamProgress = new Dictionary<TeamData, float>();
     }
-}
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out Character character))
+        {
+            
+            //get character's team
+        }
+    }
+    }

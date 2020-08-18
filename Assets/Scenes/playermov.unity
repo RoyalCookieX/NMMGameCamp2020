@@ -907,8 +907,9 @@ GameObject:
   - component: {fileID: 2084912556}
   - component: {fileID: 2084912555}
   - component: {fileID: 2084912554}
-  - component: {fileID: 2084912557}
   - component: {fileID: 2084912558}
+  - component: {fileID: 2084912559}
+  - component: {fileID: 2084912557}
   m_Layer: 0
   m_Name: Area Capture
   m_TagString: Untagged
@@ -5646,7 +5647,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084912553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2172225, y: -1.0971584, z: -5.206357}
+  m_LocalPosition: {x: -3.41, y: 1.3, z: -5.206357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5661,12 +5662,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2084912553}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ee041ff05cc5e4c84acf7d8286d133, type: 3}
+  m_Script: {fileID: 11500000, guid: 938313797eab773468e6d0ce137dbe5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: {x: 0, y: 0, z: 100}
-  red: 0
-  blue: 0
+  team: {fileID: 0}
+  maxProgress: 10
 --- !u!58 &2084912558
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5683,3 +5683,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.99
+--- !u!114 &2084912559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084912553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ee041ff05cc5e4c84acf7d8286d133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 0, y: 0, z: 100}
+  red: 0
+  blue: 0
