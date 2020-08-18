@@ -10,17 +10,26 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
     [SerializeField] protected LayerMask weaponMask;
-    [SerializeField] public TeamData TeamData { get; protected set; }
+    [SerializeField] public Team CharTeam { get; protected set; }
 
     [Space]
     [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
+    public bool IsSpawning { get; private set; } = false;
+    public float SpawnCooldown { get; private set; } = 0;
 
     private void OnEnable()
     {
+        IsSpawning = false;
         health = 100;
+    }
+
+    private void Update()
+    {
+        if (SpawnCooldown > 0) SpawnCooldown -= Time.deltaTime;
+        else SpawnCooldown = 0;
     }
 
     protected virtual void SetArmAngle(float angle)
@@ -42,14 +51,16 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         DropWeapon();
+        SpawnCooldown = 3;
         gameObject.SetActive(false);
+        IsSpawning = true;
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
         if (this.weapon) return;
         this.weapon = weapon;
-        weapon.teamData = TeamData;
+        weapon.teamData = CharTeam.teamData;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -87,10 +98,5 @@ public abstract class Character : MonoBehaviour, IDamageable
 
         weapon.teamData = null;
         weapon = null;
-    }
-
-    public void SetTeam(TeamData data)
-    {
-        TeamData = data;
     }
 }

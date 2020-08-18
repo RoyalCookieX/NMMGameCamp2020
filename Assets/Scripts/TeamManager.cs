@@ -5,109 +5,72 @@ using UnityEngine;
 
 public class TeamManager : MonoBehaviour
 {
-    [SerializeField] TeamData team;
-    public TeamData Team { get { return team; } private set { } }
+    public static TeamManager Instance { get; private set; }
 
-    [SerializeField] List<Spawnpoint> teamSpawnpoints;
-    [SerializeField] List<Capturepoint> uncapturedpoints;
-    [SerializeField] List<Character> teamList;
+    [SerializeField] List<TeamData> teamDatas;
+    [SerializeField] List<Team> teams;
+
     [SerializeField] float radius = 1;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else Destroy(gameObject);
+        
+    }
+
+    private void Start()
+    {
+        OnStartGame();
+    }
+
+    private void OnDestroy()
+    {
+        if(Instance = this) Instance = null;
+    }
+
+    public void OnPointCaptured(Capturepoint capturepoint, Team oldTeam, Team newTeam)
+    {
+        if (!newTeam.teamSpawnpoints.Contains(capturepoint))
+        {
+            newTeam.teamSpawnpoints.Add(capturepoint);
+            oldTeam.teamSpawnpoints.Remove(capturepoint);
+        }
+    }
 
     [ContextMenu("Start Game")]
     void OnStartGame()
     {
-        //reset spawnpoints
-        teamSpawnpoints = new List<Spawnpoint>();
-        uncapturedpoints = new List<Capturepoint>();
+        //get all spawnpoints
+        List<Spawnpoint> allSpawnpoints = FindObjectsOfType<Spawnpoint>().ToList();
 
-        //initalize spawnpoints
-        foreach (Spawnpoint spawnpoint in FindObjectsOfType<Spawnpoint>())
+        //create all teams
+        teams = new List<Team>();
+        for(int teamIndex = 0; teamIndex < teamDatas.Count; teamIndex++)
         {
-            if (spawnpoint.team == team) teamSpawnpoints.Add(spawnpoint);
-            if(spawnpoint.GetType() == typeof(Capturepoint))
-            {
-                //subscribing each capturepoint's event to TeamManager_onCaptureEvent method
-                ((Capturepoint)spawnpoint).onCaptureEvent += TeamManager_onCaptureEvent;
-                if (spawnpoint.team != team) uncapturedpoints.Add((Capturepoint)spawnpoint);
-            }
-        }
+            //create team based on teamData
+            TeamData teamData = teamDatas[teamIndex];
+            Team team = new Team(teamData);
 
-        //gets the first spawnpoint
-        if (teamSpawnpoints.Count == 0)
-        {
-            Debug.LogError($"{team.teamName} Team has no spawnpoints.");
-            return;
-        }
-        Transform startSpawnpoint = teamSpawnpoints[0].transform;
+            if (teamData.PresetTeam != null) team.playerList = teamData.PresetTeam;
 
-        //initalizes characters and places them at startSpawnpoint
-        for(int i = 0; i < teamList.Count; i++)
-        {
-            Character character = Instantiate(teamList[i], startSpawnpoint.position, startSpawnpoint.rotation);
-            character.gameObject.SetActive(false);
-            character.SetTeam(team);
-            teamList[i] = character;
+            //get all team's spawnpoints in the scene
+            team.teamSpawnpoints = allSpawnpoints.FindAll(spawnpoint => spawnpoint.teamData == team.teamData);
+            teams.Add(team);
         }
     }
 
-    [ContextMenu("End Game")]
-    void OnEndGame()
+    public void SpawnCharacter(int teamIndex, int characterIndex, int spawnpointIndex)
     {
-        //unsubscribes method from capturepoints
-        foreach(Capturepoint capturepoint in FindObjectsOfType<Capturepoint>())
-        {
-            capturepoint.onCaptureEvent -= TeamManager_onCaptureEvent;
-        }
-    }
+        if (teams[teamIndex].teamSpawnpoints.Count == 0) return;
+        Transform point = teams[teamIndex].teamSpawnpoints[spawnpointIndex].transform;
+        teams[teamIndex].playerList[characterIndex].transform.position = (Vector2)point.position + UnityEngine.Random.insideUnitCircle * radius;
+        teams[teamIndex].playerList[characterIndex].transform.rotation = point.rotation;
 
-    //calls every time a capturepoint gets captured by a team
-    private void TeamManager_onCaptureEvent(TeamData team, Capturepoint capturepoint)
-    {
-        //if this team captured a capturepoint
-        if(this.team == team)
-        {
-            if (teamSpawnpoints.Contains(capturepoint)) return;
-
-            //add to teamSpawnpoints, remove from uncapturedpoints
-            teamSpawnpoints.Add(capturepoint);
-            uncapturedpoints.Remove(capturepoint);
-        }
-        else
-        {
-            if (!teamSpawnpoints.Contains(capturepoint)) return;
-
-            //remove from teamSpawnpoints, add to uncaptuedpoints
-            uncapturedpoints.Add(capturepoint);
-            teamSpawnpoints.Remove(capturepoint);
-        }
-    }
-
-    public void AddCharacter(Character character)
-    {
-        teamList.Add(character);
-    }
-
-    [ContextMenu("Capturepoint Test")]
-    public void CapturepointTest()
-    {
-        if (teamSpawnpoints.Count < 2) return;
-        SpawnCharacter(0, 1);
-    }
-
-    [ContextMenu("Spawnpoint Test")]
-    public void SpawnpointTest()
-    {
-        if (teamSpawnpoints.Count < 1) return;
-        SpawnCharacter(0, 0);
-    }
-
-    public void SpawnCharacter(int characterIndex, int spawnpointIndex)
-    {
-        if (teamSpawnpoints.Count == 0) return;
-        Transform point = teamSpawnpoints[spawnpointIndex].transform;
-        teamList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
-        teamList[characterIndex].transform.rotation = point.rotation;
-
-        teamList[characterIndex].gameObject.SetActive(true);
+        teams[teamIndex].playerList[characterIndex].gameObject.SetActive(true);
     }
 }

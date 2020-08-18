@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Blue
   teamColor: {r: 0, g: 0, b: 1, a: 1}
+  presetTeam:
+  - {fileID: 2252159497235502749, guid: 86aba06bb74431840b4097cca40bfb92, type: 3}
+  - {fileID: 3985694117098929674, guid: 50d46b08e3c76634cbcfc364eaffa2a3, type: 3}
+  - {fileID: 3985694117098929674, guid: 50d46b08e3c76634cbcfc364eaffa2a3, type: 3}
+  - {fileID: 3985694117098929674, guid: 50d46b08e3c76634cbcfc364eaffa2a3, type: 3}
+  - {fileID: 3985694117098929674, guid: 50d46b08e3c76634cbcfc364eaffa2a3, type: 3}

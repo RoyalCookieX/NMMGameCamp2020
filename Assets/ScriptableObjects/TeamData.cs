@@ -7,4 +7,6 @@ public class TeamData : ScriptableObject
 {
     public string teamName;
     public Color teamColor;
+    [SerializeField] List<Character> presetTeam;
+    public List<Character> PresetTeam { get { return presetTeam; } }
 }

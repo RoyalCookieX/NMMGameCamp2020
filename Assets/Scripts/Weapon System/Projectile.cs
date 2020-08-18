@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour, IPoolObject
         {
             if(collision.transform.TryGetComponent(out Character character))
             {
-                if (character.TeamData.teamName == teamData.teamName) return;
+                if (character.CharTeam.teamData.teamName == teamData.teamName) return;
             }
             damageable.TakeDamage(damage);
             gameObject.SetActive(false);
