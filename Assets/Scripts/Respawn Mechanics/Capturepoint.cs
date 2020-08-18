@@ -30,7 +30,7 @@ public class Capturepoint : Spawnpoint
 
     void OnCaptured(TeamData team)
     {
-        if (!team) return;
+        if (!team || this.team == team) return;
         onCaptureEvent?.Invoke(team, this);
         base.team = team;
         teamProgress = new Dictionary<TeamData, float>();
