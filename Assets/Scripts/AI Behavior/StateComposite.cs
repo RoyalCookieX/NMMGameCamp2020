@@ -69,6 +69,8 @@ public abstract class StateComposite : StateNode
 
     private bool CheckConditions()
     {
+        if(conditions.Count == 0) return true;
+        Debug.Log(conditions);
         foreach (StateCondition condition in conditions)
         {
             if (condition.CheckCondition() == false)

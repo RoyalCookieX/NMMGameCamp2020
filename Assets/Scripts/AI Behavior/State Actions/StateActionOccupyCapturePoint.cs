@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateActionOccupyCapturePoint : MonoBehaviour
+[CreateAssetMenu(menuName="State Nodes/Actions/Occupy Capture Point")]
+public class StateActionOccupyCapturePoint : StateAction
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //stay in capture point until it's captured
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void Tick(){
+        //if capturetarget progress isnt 100, keep staying and defending
+        //is progress is 100, return success
     }
 }

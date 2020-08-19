@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class WeaponBehavior : StateNode
+public enum WeaponBehaviorStatus { Success, Doing, Fail }
+
+public abstract class WeaponBehavior : ScriptableObject
 {
+    NonPlayerCharacter nonPlayerCharacter;
     protected Weapon weapon;
 
     public virtual void InitializeWeaponBehavior(NonPlayerCharacter nonPlayerCharacter)
@@ -12,5 +15,5 @@ public abstract class WeaponBehavior : StateNode
         weapon = nonPlayerCharacter.weapon;
     }
 
-    protected abstract void Attack();
+    public abstract WeaponBehaviorStatus Attack();
 }

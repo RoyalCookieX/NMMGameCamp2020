@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateActionAttack : MonoBehaviour
+[CreateAssetMenu(menuName="State Nodes/Actions/Attack")]
+public class StateActionAttack : StateAction
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Tick()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        WeaponBehaviorStatus status = nonPlayerCharacter.weapon.weaponData.weaponBehavior.Attack();
+        if (status == WeaponBehaviorStatus.Success)
+        {
+            parentNode.Success(this);
+        }
+        else if(status == WeaponBehaviorStatus.Fail){
+            parentNode.Fail(this);
+        }
     }
 }

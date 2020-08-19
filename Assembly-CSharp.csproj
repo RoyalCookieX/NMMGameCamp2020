@@ -48,9 +48,7 @@
      <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateSequencer.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasCaptureTarget.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasTarget.cs" />
-     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasWeapon.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionIsInsideCaptureTarget.cs" />
-     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionWeaponReloading.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\StateAction.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\StateComposite.cs" />
      <Compile Include="Assets\Scripts\AI Behavior\StateCondition.cs" />

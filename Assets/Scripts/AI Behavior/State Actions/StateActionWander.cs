@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateActionWander : MonoBehaviour
+[CreateAssetMenu(menuName="State Nodes/Actions/Wander")]
+public class StateActionWander : StateAction
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void Tick(){
+        //wander around map, seek to kill enemies
     }
 }
