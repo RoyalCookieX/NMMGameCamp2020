@@ -1,0 +1,707 @@
+fileFormatVersion: 2
+guid: fd460e1915f52154ba02d72ed91d3710
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8355464489880392558
+    second: sprite-animations_0
+  - first:
+      213: -8760891461188175859
+    second: sprite-animations_1
+  - first:
+      213: -4670802985545974944
+    second: sprite-animations_2
+  - first:
+      213: -943169167151544021
+    second: sprite-animations_3
+  - first:
+      213: 5908583178600939667
+    second: sprite-animations_4
+  - first:
+      213: -1047476987751062846
+    second: sprite-animations_5
+  - first:
+      213: 6135798680300154660
+    second: sprite-animations_6
+  - first:
+      213: 3783213865094299596
+    second: sprite-animations_7
+  - first:
+      213: 5702395002492122210
+    second: sprite-animations_8
+  - first:
+      213: -3922977130868670377
+    second: sprite-animations_9
+  - first:
+      213: -1198556483356887029
+    second: sprite-animations_10
+  - first:
+      213: 5825941699024554904
+    second: sprite-animations_11
+  - first:
+      213: 2708218251492872503
+    second: sprite-animations_12
+  - first:
+      213: 7999363103036465330
+    second: player_idle_1
+  - first:
+      213: 5573204822275135623
+    second: player_idle_2
+  - first:
+      213: 5915280879400261767
+    second: player_moving_1
+  - first:
+      213: 5786002886095799227
+    second: player_moving_2
+  - first:
+      213: 8209852050199719044
+    second: player_moving_3
+  - first:
+      213: 4070774548185955529
+    second: player_moving_4
+  - first:
+      213: 3630149768106328033
+    second: player_death_1
+  - first:
+      213: -1370431904782064070
+    second: player_death_2
+  - first:
+      213: 1053470849155965888
+    second: player_death_3
+  - first:
+      213: -1669590035832514165
+    second: sprite-animations_22
+  - first:
+      213: 5846510142183059786
+    second: sprite-animations_23
+  - first:
+      213: 5713250227843295556
+    second: ally_idle_1
+  - first:
+      213: -7966730445812652891
+    second: ally_idle_2
+  - first:
+      213: -8354811057863970878
+    second: ally_moving_1
+  - first:
+      213: -7386438221465262844
+    second: ally_moving_2
+  - first:
+      213: -4036766890408731037
+    second: ally_moving_3
+  - first:
+      213: -7852222779148858261
+    second: ally_moving_4
+  - first:
+      213: -6668092700715525101
+    second: ally_death
+  - first:
+      213: -1860798109073772900
+    second: sprite-animations_31
+  - first:
+      213: 7441391940398873022
+    second: sprite-animations_32
+  - first:
+      213: -8870665443727641255
+    second: enemy_idle_1
+  - first:
+      213: 1184279731106095666
+    second: enemy_idle_2
+  - first:
+      213: 4241497794160933364
+    second: enemy_moving_1
+  - first:
+      213: -2061538764623017096
+    second: enemy_moving_2
+  - first:
+      213: -9202450242907579799
+    second: enemy_moving_3
+  - first:
+      213: 1730972731760113908
+    second: enemy_moving_4
+  - first:
+      213: 3814946812410913196
+    second: enemy_death
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player_idle_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 173
+        width: 42
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0ead91c52730f60800000000000000
+      internalID: 7999363103036465330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_idle_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 173
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788143cf140085d40800000000000000
+      internalID: 5573204822275135623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_moving_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 173
+        width: 43
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 788105b8e9c471250800000000000000
+      internalID: 5915280879400261767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_moving_2
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 173
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3002728f20c4050800000000000000
+      internalID: 5786002886095799227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_moving_3
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 173
+        width: 42
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48caaa621f04fe170800000000000000
+      internalID: 8209852050199719044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_moving_4
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 173
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cc335932eb4e7830800000000000000
+      internalID: 4070774548185955529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_1
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 173
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1efb1711bf1e06230800000000000000
+      internalID: 3630149768106328033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_2
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 173
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a366a96817f3bfce0800000000000000
+      internalID: -1370431904782064070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_death_3
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 173
+        width: 35
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c3ab21e72eae9e00800000000000000
+      internalID: 1053470849155965888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_idle_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 113
+        width: 44
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 449e487efca894f40800000000000000
+      internalID: 5713250227843295556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_idle_2
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 113
+        width: 44
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a42c0c7edc707190800000000000000
+      internalID: -7966730445812652891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_moving_1
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 113
+        width: 43
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cf238acb9fbd0c80800000000000000
+      internalID: -8354811057863970878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_moving_2
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 113
+        width: 44
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 405e13692991e7990800000000000000
+      internalID: -7386438221465262844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_moving_3
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 114
+        width: 43
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e1120a6e58af7c0800000000000000
+      internalID: -4036766890408731037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_moving_4
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 114
+        width: 43
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6c0a973cfc470390800000000000000
+      internalID: -7852222779148858261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ally_death
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 113
+        width: 44
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31cd97c840d2673a0800000000000000
+      internalID: -6668092700715525101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_idle_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 43
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955f74917c015e480800000000000000
+      internalID: -8870665443727641255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_idle_2
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 43
+        width: 43
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 232264f04286f6010800000000000000
+      internalID: 1184279731106095666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_moving_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 43
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9b09875c3dcda30800000000000000
+      internalID: 4241497794160933364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_moving_2
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 43
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87b82f38a61f363e0800000000000000
+      internalID: -2061538764623017096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_moving_3
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 43
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a5940c2445a4080800000000000000
+      internalID: -9202450242907579799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_moving_4
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 43
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f8f2784786a50810800000000000000
+      internalID: 1730972731760113908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_death
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 43
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1e2c6d9e961f430800000000000000
+      internalID: 3814946812410913196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: c5500571c033a9348be9c4c3a065ab4e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

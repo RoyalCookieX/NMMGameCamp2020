@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Spawnpoint : MonoBehaviour
 {
-    public TeamData team;
+    public TeamData teamData;
 }

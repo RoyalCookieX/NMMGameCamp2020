@@ -20,6 +20,7 @@ public class Player : Character
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float lerpSpeed = 2;
     float smoothSpeed;
+    [SerializeField] protected LayerMask weaponMask;
 
     private void Start()
     {
@@ -28,6 +29,7 @@ public class Player : Character
 
     void Update()
     {
+        //arm movement
         if(cam)
         {
             Vector2 armCenter = cam.WorldToScreenPoint(arm.transform.position);
@@ -35,6 +37,7 @@ public class Player : Character
             SetArmAngle(angle);
         }
 
+        //equiping a weapon
         if (Input.GetKeyDown(KeyCode.E))
         {
             Collider2D col = Physics2D.OverlapCircle(transform.position, .75f, weaponMask);
@@ -48,6 +51,7 @@ public class Player : Character
             }
         }
 
+        //shooting a weapon
         if (weapon)
         {
             if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
@@ -55,27 +59,38 @@ public class Player : Character
             if (Input.GetKeyDown(KeyCode.R)) weapon.Reload();
         }
 
-        //From Playermov.cs
-        //float transV = Input.GetAxis("Vertical") * playerSpeedVertical * Time.deltaTime;
-        //float transH = Input.GetAxis("Horizontal") * playerSpeedHorizontal * Time.deltaTime;
+        /*player movement
+          --From Playermov.cs--
+          float transV = Input.GetAxis("Vertical") * playerSpeedVertical * Time.deltaTime;
+          float transH = Input.GetAxis("Horizontal") * playerSpeedHorizontal * Time.deltaTime;
+        */
 
         Vector2 dir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         smoothSpeed = Mathf.Lerp(smoothSpeed, dir.magnitude > 0 ? playerSpeed : 0, Time.deltaTime * lerpSpeed);
 
-        transform.Translate(dir * smoothSpeed * Time.deltaTime);
+        if(!IsSpawning) transform.Translate(dir * smoothSpeed * Time.deltaTime);
+
+        //animation
+        anim.SetBool("isMoving", dir.magnitude > 0.15f);
     }
 
-    //private void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.transform.TryGetComponent(out Weapon weapon))
-    //    {
-    //        if (Input.GetKeyDown(KeyCode.E))
-    //        {
-    //            if(weapon) DropWeapon();
-    //            EquipWeapon(weapon);
-    //        }
-    //    }
-    //}
+    public override void TakeDamage(float damage)
+    {
+        anim.SetTrigger("damaged");
+        base.TakeDamage(damage);
+    }
+
+    public override void Die()
+    {
+        IEnumerator DieEnumerator()
+        {
+            anim.SetTrigger("die");
+            while (!anim.GetCurrentAnimatorStateInfo(0).IsTag("disable")) yield return null;
+            base.Die();
+        }
+        StopAllCoroutines();
+        StartCoroutine(DieEnumerator());
+    }
 
     private void OnGUI()
     {
