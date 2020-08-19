@@ -8,7 +8,7 @@ public abstract class StateComposite : StateNode
     public List<StateNode> nodes;
     [HideInInspector] public StateNode currentNode;
 
-    public override void InitializeNode(StateMachine character)
+    public override void InitializeNode(NonPlayerCharacter character)
     {
         base.InitializeNode(character);
         InitializeChildrenNodes();
@@ -19,11 +19,11 @@ public abstract class StateComposite : StateNode
         foreach (StateNode node in nodes)
         {
             node.parentNode = this;
-            node.InitializeNode(stateMachine);
+            node.InitializeNode(nonPlayerCharacter);
         }
         foreach(StateNode node in conditions)
         {
-            node.InitializeNode(stateMachine);
+            node.InitializeNode(nonPlayerCharacter);
         }
     }
 
@@ -41,6 +41,11 @@ public abstract class StateComposite : StateNode
 
     public override void Tick()
     {
+        if (!CheckConditions())
+        {
+            parentNode.Fail(this);
+            return;
+        }
         if (currentNode != null)
         {
             currentNode.Tick();

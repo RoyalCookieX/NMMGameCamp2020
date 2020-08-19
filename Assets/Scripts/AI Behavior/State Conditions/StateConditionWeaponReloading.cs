@@ -7,7 +7,7 @@ public class StateConditionWeaponReloading : StateCondition
 {
     public override bool CheckCondition()
     {
-        if (stateMachine.nonPlayerCharacter.weapon.CurrentCooldown > 0)
+        if (nonPlayerCharacter.weapon.CurrentCooldown > 0)
         {
             return true;
         }

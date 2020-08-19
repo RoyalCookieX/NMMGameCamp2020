@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateConditionHasCaptureTarget : MonoBehaviour
+[CreateAssetMenu(menuName = "State Nodes/Conditions/Has Capture Target")]
+public class StateConditionHasCaptureTarget : StateCondition
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool CheckCondition()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (nonPlayerCharacter.captureTarget)
+        {
+            return true;
+        }
+        return false;
     }
 }

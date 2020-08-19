@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State Nodes/Composites/Root")]
 public class StateRoot : StateComposite
 {
-    public override void InitializeNode(StateMachine character)
+    public override void InitializeNode(NonPlayerCharacter nonPlayerCharacter)
     {
-        base.InitializeNode(character);
+        base.InitializeNode(nonPlayerCharacter);
         SetCurrentNode(nodes[0]);
     }
 

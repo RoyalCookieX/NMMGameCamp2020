@@ -9,7 +9,7 @@ public abstract class Weapon : MonoBehaviour
     public int Size { get; set; } = 10;
     public TeamData teamData;
 
-    [SerializeField] protected WeaponData weaponData;
+    public WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
     public float CurrentCooldown { get; private set; }
@@ -17,7 +17,6 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
-        print("GENERATING POOL");
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {

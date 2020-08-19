@@ -7,7 +7,7 @@ public class StateConditionHasWeapon : StateCondition
 {
     public override bool CheckCondition()
     {
-        if (stateMachine.nonPlayerCharacter.weapon)
+        if (nonPlayerCharacter.weapon)
         {
             return true;
         }

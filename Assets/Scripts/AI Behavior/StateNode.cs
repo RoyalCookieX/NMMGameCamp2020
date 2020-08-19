@@ -4,13 +4,13 @@ using UnityEngine;
 
 public abstract class StateNode : ScriptableObject
 {
-    [HideInInspector] public StateMachine stateMachine;
+    [HideInInspector] public NonPlayerCharacter nonPlayerCharacter;
 
     [HideInInspector] public StateComposite parentNode;
 
-    public virtual void InitializeNode(StateMachine stateMachine)
+    public virtual void InitializeNode(NonPlayerCharacter nonPlayerCharacter)
     {
-        this.stateMachine = stateMachine;
+        this.nonPlayerCharacter = nonPlayerCharacter;
     }
 
     public virtual void OnEnter()

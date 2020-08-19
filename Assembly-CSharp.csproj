@@ -67,7 +67,7 @@
     <Compile Include="Assets\ScriptableObjects\WeaponData.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\NonPlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionAttack.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionDefendCapturePoint.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionOccupyCapturePoint.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionTakeCapturePoint.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionWander.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateRoot.cs" />
@@ -76,11 +76,11 @@
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasCaptureTarget.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasTarget.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasWeapon.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionIsInsideCaptureTarget.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionWeaponReloading.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\StateAction.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\StateComposite.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\StateCondition.cs" />
-    <Compile Include="Assets\Scripts\AI Behavior\StateMachine.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\StateNode.cs" />
     <Compile Include="Assets\Scripts\AreaCapture.cs" />
     <Compile Include="Assets\Scripts\Character.cs" />
@@ -92,10 +92,13 @@
     <Compile Include="Assets\Scripts\PlayerMov.cs" />
     <Compile Include="Assets\Scripts\Respawn Mechanics\Capturepoint.cs" />
     <Compile Include="Assets\Scripts\Respawn Mechanics\Spawnpoint.cs" />
+    <Compile Include="Assets\Scripts\Team.cs" />
     <Compile Include="Assets\Scripts\TeamManager.cs" />
     <Compile Include="Assets\Scripts\Weapon System\BaseWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapon System\IPoolObject.cs" />
     <Compile Include="Assets\Scripts\Weapon System\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Weapon System\Weapon Behavior Scripts\WeaponBehavior.cs" />
+    <Compile Include="Assets\Scripts\Weapon System\Weapon Behavior Scripts\WeaponBehaviorMediumRifle.cs" />
     <Compile Include="Assets\Scripts\Weapon System\Weapon.cs" />
     <Compile Include="Assets\Scripts\test.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

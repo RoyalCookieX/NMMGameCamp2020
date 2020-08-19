@@ -7,7 +7,7 @@ public class StateConditionHasTarget : StateCondition
 {
     public override bool CheckCondition()
     {
-        if (stateMachine.nonPlayerCharacter.target)
+        if (nonPlayerCharacter.target)
         {
             return true;
         }
