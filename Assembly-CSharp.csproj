@@ -67,10 +67,13 @@
     <Compile Include="Assets\ScriptableObjects\WeaponData.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\NonPlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionAttack.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionDefendCapturePoint.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionTakeCapturePoint.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionWander.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateRoot.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateSelector.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Composites\StateSequencer.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasCaptureTarget.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasTarget.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionHasWeapon.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Conditions\StateConditionWeaponReloading.cs" />
