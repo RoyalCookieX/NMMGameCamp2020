@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        gameObject.SetActive(false);
         if (collision.transform.TryGetComponent(out IDamageable damageable))
         {
             if(collision.transform.TryGetComponent(out Character character))
@@ -37,7 +38,6 @@ public class Projectile : MonoBehaviour, IPoolObject
                 if (character.CharTeam.teamData.teamName == teamData.teamName) return;
             }
             damageable.TakeDamage(damage);
-            gameObject.SetActive(false);
         }
     }
 

@@ -9,8 +9,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] protected LayerMask weaponMask;
-    [SerializeField] public Team CharTeam { get; protected set; }
+    [SerializeField] public Team CharTeam { get; set; }
 
     [Space]
     [Header("Characrter Properties")]

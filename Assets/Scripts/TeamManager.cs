@@ -45,9 +45,6 @@ public class TeamManager : MonoBehaviour
     [ContextMenu("Start Game")]
     void OnStartGame()
     {
-        //get all spawnpoints
-        List<Spawnpoint> allSpawnpoints = FindObjectsOfType<Spawnpoint>().ToList();
-
         //create all teams
         teams = new List<Team>();
         for(int teamIndex = 0; teamIndex < teamDatas.Count; teamIndex++)
@@ -56,11 +53,31 @@ public class TeamManager : MonoBehaviour
             TeamData teamData = teamDatas[teamIndex];
             Team team = new Team(teamData);
 
-            if (teamData.PresetTeam != null) team.playerList = teamData.PresetTeam;
+            if (teamData.PresetTeam != null) team.playerList.AddRange(teamData.PresetTeam);
+
+            for(int playerIndex = 0; playerIndex < team.playerList.Count; playerIndex++)
+            {
+                Character player = Instantiate(team.playerList[playerIndex]);
+                team.playerList[playerIndex] = player;
+                player.CharTeam = team;
+                player.gameObject.SetActive(false);
+            }
+
+            //get all spawnpoints / capturepoints
+            List<Spawnpoint> allSpawnpoints = FindObjectsOfType<Spawnpoint>().ToList();
+            List<Capturepoint> allCapturepoints = FindObjectsOfType<Capturepoint>().ToList();
 
             //get all team's spawnpoints in the scene
             team.teamSpawnpoints = allSpawnpoints.FindAll(spawnpoint => spawnpoint.teamData == team.teamData);
+            //get all uncapturedpoints for this team in the scene
+            team.uncapturedpoints = allCapturepoints.FindAll(spawnpoint => spawnpoint.teamData != team.teamData);
             teams.Add(team);
+
+            //spawn each character
+            for(int characterIndex = 0; characterIndex < team.playerList.Count; characterIndex++)
+            {
+                SpawnCharacter(teamIndex, characterIndex, 0);
+            }
         }
     }
 
