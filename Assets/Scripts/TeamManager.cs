@@ -11,6 +11,7 @@ public class TeamManager : MonoBehaviour
     [SerializeField] List<Team> teams;
 
     [SerializeField] float radius = 1;
+    [SerializeField] float respawnTime = 1;
 
     private void Awake()
     {
@@ -42,7 +43,12 @@ public class TeamManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Start Game")]
+    public Team GetTeam(TeamData teamData)
+    {
+        Team team = teams.Find(_team => _team.teamData == teamData);
+        return team;
+    }
+
     void OnStartGame()
     {
         //create all teams
@@ -53,14 +59,15 @@ public class TeamManager : MonoBehaviour
             TeamData teamData = teamDatas[teamIndex];
             Team team = new Team(teamData);
 
-            if (teamData.PresetTeam != null) team.playerList.AddRange(teamData.PresetTeam);
+            if (teamData.PresetTeam != null) team.characterList.AddRange(teamData.PresetTeam);
 
-            for(int playerIndex = 0; playerIndex < team.playerList.Count; playerIndex++)
+            for(int playerIndex = 0; playerIndex < team.characterList.Count; playerIndex++)
             {
-                Character player = Instantiate(team.playerList[playerIndex]);
-                team.playerList[playerIndex] = player;
-                player.CharTeam = team;
-                player.gameObject.SetActive(false);
+                Character character = Instantiate(team.characterList[playerIndex]);
+                team.characterList[playerIndex] = character;
+                character.teamData = team.teamData;
+                character.gameObject.SetActive(false);
+                character.OnDeathEvent += OnDeathEvent;
             }
 
             //get all spawnpoints / capturepoints
@@ -74,20 +81,40 @@ public class TeamManager : MonoBehaviour
             teams.Add(team);
 
             //spawn each character
-            for(int characterIndex = 0; characterIndex < team.playerList.Count; characterIndex++)
+            for(int characterIndex = 0; characterIndex < team.characterList.Count; characterIndex++)
             {
                 SpawnCharacter(teamIndex, characterIndex, 0);
             }
         }
     }
 
+    void OnDeathEvent(Character character)
+    {
+        IEnumerator SpawnEnumerator()
+        {
+            yield return new WaitForSecondsRealtime(respawnTime);
+            SpawnCharacter(character, Random.Range(0, character.GetTeam().teamSpawnpoints.Count));
+        }
+        StartCoroutine(SpawnEnumerator());
+    }
+
+    public void SpawnCharacter(Character character, int spawnpointIndex)
+    {
+        if (character.GetTeam().teamSpawnpoints.Count == 0) return;
+        Transform point = character.GetTeam().teamSpawnpoints[spawnpointIndex].transform;
+        character.transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
+        character.transform.rotation = point.rotation;
+
+        character.gameObject.SetActive(true);
+    }
+
     public void SpawnCharacter(int teamIndex, int characterIndex, int spawnpointIndex)
     {
         if (teams[teamIndex].teamSpawnpoints.Count == 0) return;
         Transform point = teams[teamIndex].teamSpawnpoints[spawnpointIndex].transform;
-        teams[teamIndex].playerList[characterIndex].transform.position = (Vector2)point.position + UnityEngine.Random.insideUnitCircle * radius;
-        teams[teamIndex].playerList[characterIndex].transform.rotation = point.rotation;
+        teams[teamIndex].characterList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
+        teams[teamIndex].characterList[characterIndex].transform.rotation = point.rotation;
 
-        teams[teamIndex].playerList[characterIndex].gameObject.SetActive(true);
+        teams[teamIndex].characterList[characterIndex].gameObject.SetActive(true);
     }
 }

@@ -29,11 +29,16 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4154086748857814713, guid: f11ee87c3402ec744aa04755c3726298,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.602
+      objectReference: {fileID: 0}
     - target: {fileID: 4205341140171352416, guid: f11ee87c3402ec744aa04755c3726298,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -4056437433907239288, guid: 288f94262c596df4294085c315c2ff56,
+      objectReference: {fileID: -7888296697152109952, guid: b80b18e2cf83b5e4d9f531299bbc3394,
         type: 3}
     - target: {fileID: 8494635333628509234, guid: f11ee87c3402ec744aa04755c3726298,
         type: 3}

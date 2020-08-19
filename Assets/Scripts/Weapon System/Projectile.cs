@@ -30,14 +30,18 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameObject.SetActive(false);
         if (collision.transform.TryGetComponent(out IDamageable damageable))
         {
             if(collision.transform.TryGetComponent(out Character character))
             {
-                if (character.CharTeam.teamData.teamName == teamData.teamName) return;
+                if (character.teamData.teamName == teamData.teamName) 
+                {
+                    gameObject.SetActive(false);
+                    return;
+                };
             }
             damageable.TakeDamage(damage);
+            gameObject.SetActive(false);
         }
     }
 
