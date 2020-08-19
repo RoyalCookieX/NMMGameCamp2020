@@ -25,6 +25,7 @@ public class Player : Character
     private void Start()
     {
         cam = GameCamera.Instance.Cam;
+        PlayerGUI.Player = this;
     }
 
     void Update()
@@ -54,8 +55,8 @@ public class Player : Character
         //shooting a weapon
         if (weapon)
         {
-            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
-            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
+            if (Input.GetButtonDown("Fire1") && weapon.GetWeaponData().type == WeaponType.SEMIAUTO) weapon.Fire();
+            else if (Input.GetButton("Fire1") && weapon.GetWeaponData().type == WeaponType.AUTO) weapon.Fire();
             if (Input.GetKeyDown(KeyCode.R)) weapon.Reload();
         }
 
@@ -92,14 +93,21 @@ public class Player : Character
         StartCoroutine(DieEnumerator());
     }
 
-    private void OnGUI()
+    //private void OnGUI()
+    //{
+    //    GUI.color = gradient.Evaluate(1 - (Health / 100));
+    //    GUI.Label(healthRect, $"Health: {Health}");
+    //    if (!weapon) return;
+    //    GUI.color = gradient.Evaluate(1 - ((float)weapon.CurAmmo / weapon.GetWeaponData().ammo));
+    //    GUI.Label(ammoRect, $"Ammo: {weapon.CurAmmo}/{weapon.GetWeaponData().ammo}");
+    //    GUI.color = gradient.Evaluate(weapon.CurCooldown * weapon.GetWeaponData().fireRate);
+    //    GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurCooldown * weapon.GetWeaponData().fireRate * 100) / 100}");
+    //}
+
+    [ContextMenu("Take Damage")]
+    void Test()
     {
-        GUI.color = gradient.Evaluate(1 - (Health / 100));
-        GUI.Label(healthRect, $"Health: {Health}");
-        if (!weapon) return;
-        GUI.color = gradient.Evaluate(1 - ((float)weapon.CurAmmo / weapon.GetData().ammo));
-        GUI.Label(ammoRect, $"Ammo: {weapon.CurAmmo}/{weapon.GetData().ammo}");
-        GUI.color = gradient.Evaluate(weapon.CurCooldown * weapon.GetData().fireRate);
-        GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurCooldown * weapon.GetData().fireRate * 100) / 100}");
+        if (!Application.isPlaying) return;
+        TakeDamage(10);
     }
 }

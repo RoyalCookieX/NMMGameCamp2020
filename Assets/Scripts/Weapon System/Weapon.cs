@@ -86,5 +86,5 @@ public abstract class Weapon : MonoBehaviour
         CurAmmo = weaponData.ammo;
     }
 
-    public WeaponData GetData() { return weaponData; }
+    public WeaponData GetWeaponData() { return weaponData; }
 }

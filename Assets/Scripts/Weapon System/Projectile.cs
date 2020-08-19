@@ -30,6 +30,12 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            ContactPoint2D contact = collision.GetContact(i);
+            Instantiate(Resources.Load<GameObject>("LaserHitParticle"), contact.point, transform.rotation);
+        }
+
         if (collision.transform.TryGetComponent(out IDamageable damageable))
         {
             if(collision.transform.TryGetComponent(out Character character))
@@ -41,8 +47,8 @@ public class Projectile : MonoBehaviour, IPoolObject
                 };
             }
             damageable.TakeDamage(damage);
-            gameObject.SetActive(false);
         }
+        gameObject.SetActive(false);
     }
 
     public void OnSpawnObject(params object[] args)

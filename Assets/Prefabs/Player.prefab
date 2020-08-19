@@ -281,7 +281,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  playerSpeed: 7
+  playerSpeed: 3
   lerpSpeed: 10
   weaponMask:
     serializedVersion: 2

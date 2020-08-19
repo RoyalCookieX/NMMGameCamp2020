@@ -9,6 +9,7 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     [Header("Character Components")]
     [SerializeField] protected Weapon weapon = null;
+    public Weapon Weapon { get { return weapon; } }
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform armGraphics = null;
