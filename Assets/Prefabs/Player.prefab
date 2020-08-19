@@ -229,6 +229,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   characterGraphics: {fileID: 5027507752276619188}
   arm: {fileID: 5027507751779613772}
+  armGraphics: {fileID: 5027507752050962958}
   weaponPoint: {fileID: 5027507752014793446}
   anim: {fileID: 3292370400226141348}
   teamData: {fileID: 0}
@@ -360,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5027507752014793445}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.28699997, y: 0, z: 0}
+  m_LocalPosition: {x: 0.1912, y: -0.0496, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5027507751779613772}
@@ -391,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5027507752050962957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.173, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5027507751779613772}
@@ -436,12 +437,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 6206600535690629475, guid: 2fb647e7521488d45a5a45d834ae7e9f,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
-  m_DrawMode: 1
-  m_Size: {x: 0.35, y: 0.15}
+  m_DrawMode: 0
+  m_Size: {x: 0.27, y: 0.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
