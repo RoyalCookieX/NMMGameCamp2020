@@ -6,14 +6,14 @@ using UnityEngine;
 public struct Team
 {
     public TeamData teamData;
-    public List<Character> playerList;
+    public List<Character> characterList;
     public List<Spawnpoint> teamSpawnpoints;
     public List<Capturepoint> uncapturedpoints;
 
     public Team(TeamData teamData)
     {
         this.teamData = teamData;
-        playerList = new List<Character>();
+        characterList = new List<Character>();
         teamSpawnpoints = new List<Spawnpoint>();
         uncapturedpoints = new List<Capturepoint>();
 

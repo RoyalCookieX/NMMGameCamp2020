@@ -1,15 +1,20 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour, IDamageable
 {
+    public event Action<Character> OnDeathEvent;
+
     [Header("Character Components")]
     public Weapon weapon = null;
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] public Team CharTeam { get; set; }
+    [SerializeField] protected Animator anim;
+    //[SerializeField] public Team CharTeam { get; set; }
+    [SerializeField] public TeamData teamData;
 
     [Space]
     [Header("Character Properties")]
@@ -41,7 +46,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
-        HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + Random.insideUnitSphere * .7f, Quaternion.identity);
+        HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + UnityEngine.Random.insideUnitSphere * .7f, Quaternion.identity);
         hitParticle.SetText(damage);
         hitParticle.SetColor(Color.red);
         if (health <= 0) Die();
@@ -50,16 +55,17 @@ public abstract class Character : MonoBehaviour, IDamageable
     public virtual void Die()
     {
         DropWeapon();
-        SpawnCooldown = 3;
         gameObject.SetActive(false);
         IsSpawning = true;
+        SpawnCooldown = 3;
+        OnDeathEvent?.Invoke(this);
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
         if (this.weapon) return;
         this.weapon = weapon;
-        weapon.teamData = CharTeam.teamData;
+        weapon.teamData = teamData;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
@@ -97,5 +103,10 @@ public abstract class Character : MonoBehaviour, IDamageable
 
         weapon.teamData = null;
         weapon = null;
+    }
+
+    public Team GetTeam()
+    {
+        return TeamManager.Instance.GetTeam(teamData);
     }
 }
