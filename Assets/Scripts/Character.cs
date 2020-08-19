@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     public Weapon weapon = null;
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
+    [SerializeField] protected Transform armGraphics = null;
     [SerializeField] protected Transform weaponPoint = null;
     [SerializeField] protected Animator anim;
     //[SerializeField] public Team CharTeam { get; set; }
@@ -39,8 +40,8 @@ public abstract class Character : MonoBehaviour, IDamageable
     protected virtual void SetArmAngle(float angle)
     {
         arm.localEulerAngles = Vector3.forward * angle;
+        arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
         characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
-        weaponPoint.transform.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
     }
 
     public virtual void TakeDamage(float damage)
