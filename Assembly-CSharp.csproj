@@ -684,6 +684,9 @@
     <Reference Include="UnityEditor.UI">
         <HintPath>D:/Documents/GitHub/NMMGameCamp2020/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+        <HintPath>D:/Documents/GitHub/NMMGameCamp2020/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

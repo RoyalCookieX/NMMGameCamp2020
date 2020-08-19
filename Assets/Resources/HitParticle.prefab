@@ -155,8 +155,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxTimeSteps: 20
-  duration: 2
+  maxTimeSteps: 60
+  duration: 1.5
 --- !u!1 &7080716824408495063
 GameObject:
   m_ObjectHideFlags: 0
