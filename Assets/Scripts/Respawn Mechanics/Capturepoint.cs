@@ -40,7 +40,8 @@ public class Capturepoint : Spawnpoint
 
     bool PointInsideSphere(Vector2 center, float radius)
     {
-        Vector2 randomPoint = Random.insideUnitCircle;
+        Vector2 randomPoint = Random.insideUnitCircle * 3;        
+        return new Vector2(Vector2.x, Vector2.y);
         bool payLoad = false;
         var characters = GameObject.FindObjectsOfType<Character>();
         foreach(Character character in characters)
