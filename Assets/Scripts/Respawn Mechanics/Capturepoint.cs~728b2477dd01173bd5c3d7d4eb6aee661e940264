@@ -9,7 +9,6 @@ public class Capturepoint : Spawnpoint
     public Dictionary<TeamData, float> teamProgress;
     public float maxProgress = 10;
     public float radius;
-  
 
     private void Start()
     {
@@ -20,12 +19,12 @@ public class Capturepoint : Spawnpoint
     [ContextMenu("Update Capturepoint")]
     void UpdateCapturepoint()
     {
-        OnCaptured(teamData);
+        OnCaptured(team);
     }
 
     public void AddProgress(TeamData team, float progressToAdd = 0.01f)
     {
-        if (base.teamData == team) return;
+        if (base.team == team) return;
         if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
         if (teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
         else OnCaptured(team);
@@ -33,23 +32,27 @@ public class Capturepoint : Spawnpoint
 
     void OnCaptured(TeamData team)
     {
-        if (!team || this.teamData == team) return;
+        if (!team || this.team == team) return;
         onCaptureEvent?.Invoke(team, this);
-        base.teamData = team;
+        base.team = team;
         teamProgress = new Dictionary<TeamData, float>();
     }
 
-    Vector2 PointInsideCircle()
+    bool PointInsideSphere(Vector2 center, float radius)
     {
-        var x = transform.position.x;
-        var y = transform.position.y;
+        Vector2 randomPoint = Random.insideUnitCircle * 3;        
+        return new Vector2(Vector2.x, Vector2.y);
+        bool payLoad = false;
+        var characters = GameObject.FindObjectsOfType<Character>();
+        foreach(Character character in characters)
+        {
+            //check if this character is in or out
+            Vector2 pos;
+            pos.x = character.transform.position.x;
+            pos.y = character.transform.position.y;
 
-
-        Vector2 randomPoint = Random.insideUnitCircle * radius;
-        var newx = randomPoint.x + x;
-        var newy = randomPoint.y + y;
-
-        return new Vector2 (newx, newy);
-       
+            payLoad = Vector2.Distance(pos, center) < radius;
+        }
+        return payLoad;
     }
 }
