@@ -30,14 +30,14 @@ public class Projectile : MonoBehaviour, IPoolObject
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        gameObject.SetActive(false);
         if (collision.transform.TryGetComponent(out IDamageable damageable))
         {
             if(collision.transform.TryGetComponent(out Character character))
             {
-                if (character.TeamData.TeamName == teamData.TeamName) return;
+                if (character.CharTeam.teamData.teamName == teamData.teamName) return;
             }
             damageable.TakeDamage(damage);
-            gameObject.SetActive(false);
         }
     }
 
@@ -47,6 +47,6 @@ public class Projectile : MonoBehaviour, IPoolObject
         rb.velocity = transform.right * speed;
 
         teamData = ((Weapon)args[0]).teamData;
-        spriteRenderer.color = teamData.Color;
+        spriteRenderer.color = teamData.teamColor;
     }
 }

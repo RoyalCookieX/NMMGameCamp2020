@@ -20,6 +20,7 @@ public class Player : Character
     [SerializeField] float playerSpeed = 5;
     [SerializeField] float lerpSpeed = 2;
     float smoothSpeed;
+    [SerializeField] protected LayerMask weaponMask;
 
     private void Start()
     {
