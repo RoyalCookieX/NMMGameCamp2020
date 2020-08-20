@@ -80,10 +80,33 @@ public class TeamManager : MonoBehaviour
             team.uncapturedpoints = allCapturepoints.FindAll(spawnpoint => spawnpoint.teamData != team.teamData);
             teams.Add(team);
 
+            //sub all capturepoint methods to 
+            foreach(Capturepoint capturepoint in allCapturepoints)
+            {
+                capturepoint.onCaptureEvent += Capturepoint_onCaptureEvent;
+            }
+
             //spawn each character
             for(int characterIndex = 0; characterIndex < team.characterList.Count; characterIndex++)
             {
                 SpawnCharacter(teamIndex, characterIndex, 0);
+            }
+        }
+    }
+
+    private void Capturepoint_onCaptureEvent(TeamData teamData, Capturepoint capturepoint)
+    {
+        foreach(Team team in teams)
+        {
+            if(team.teamData == teamData)
+            {
+                team.teamSpawnpoints.Add(capturepoint);
+                team.uncapturedpoints.Remove(capturepoint);
+            }
+            else
+            {
+                team.uncapturedpoints.Add(capturepoint);
+                team.teamSpawnpoints.Remove(capturepoint);
             }
         }
     }
