@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Capturepoint : Spawnpoint
 {
+    [SerializeField] ParticleSystem particles;
     public delegate void OnCapture(TeamData teamName, Capturepoint capturepoint);
     public event OnCapture onCaptureEvent;
     public Dictionary<TeamData, float> teamProgress;
@@ -36,6 +37,8 @@ public class Capturepoint : Spawnpoint
         if (!team || this.teamData == team) return;
         onCaptureEvent?.Invoke(team, this);
         base.teamData = team;
+        var main = particles.main;
+        main.startColor = teamData.teamColor;
         teamProgress = new Dictionary<TeamData, float>();
     }
 
