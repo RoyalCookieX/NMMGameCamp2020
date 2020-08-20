@@ -1,7 +1,202 @@
 fileFormatVersion: 2
 guid: b29dd25b64e44e94797ae3282f166ac4
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4364034832326165938
+    second: bg
+  - first:
+      213: 8783001233447891778
+    second: bg_1
+  - first:
+      213: -2956382079364231701
+    second: bg_2
+  - first:
+      213: -5914926414898421119
+    second: bg_3
+  - first:
+      213: 5417047536705764260
+    second: bg_4
+  - first:
+      213: -5674677071505025871
+    second: bg_5
+  - first:
+      213: -6423886090276725508
+    second: bg_6
+  - first:
+      213: 380707909470287619
+    second: bg_7
+  - first:
+      213: 1406968098990366703
+    second: bg_2
+  - first:
+      213: -1693845262546454406
+    second: bg_3
+  - first:
+      213: 5523857826477261205
+    second: bg_10
+  - first:
+      213: 3326986565777828055
+    second: bg_11
+  - first:
+      213: -388328722647287704
+    second: bg_12
+  - first:
+      213: 5644137073189771423
+    second: bg_13
+  - first:
+      213: 2926140226105678265
+    second: bg_14
+  - first:
+      213: -12068106912127061
+    second: bg_15
+  - first:
+      213: 5491970951155938600
+    second: bg_16
+  - first:
+      213: -8152018283284458772
+    second: bg_17
+  - first:
+      213: -9062503103050951975
+    second: bg_18
+  - first:
+      213: -3231188102013535876
+    second: bg_19
+  - first:
+      213: 6034246116658332611
+    second: bg_20
+  - first:
+      213: 8974687118231984879
+    second: bg_21
+  - first:
+      213: -404235431022852378
+    second: bg_22
+  - first:
+      213: -8703020299829369994
+    second: bg_23
+  - first:
+      213: 6933619806456798608
+    second: bg_24
+  - first:
+      213: 7146323281081315792
+    second: bg_25
+  - first:
+      213: 1257012114571803925
+    second: bg_26
+  - first:
+      213: -2023637451865288104
+    second: bg_27
+  - first:
+      213: 1997417362386350477
+    second: bg_28
+  - first:
+      213: 2101865016335646637
+    second: bg_29
+  - first:
+      213: 1059868487321231786
+    second: bg_30
+  - first:
+      213: -4064701174295282268
+    second: bg_31
+  - first:
+      213: -786380690238161009
+    second: bg_32
+  - first:
+      213: -2803767288069629784
+    second: bg_33
+  - first:
+      213: 4941370880985076872
+    second: bg_34
+  - first:
+      213: -6974962893944936460
+    second: bg_35
+  - first:
+      213: 3531214477911600273
+    second: bg_36
+  - first:
+      213: 8611723444402356321
+    second: bg_37
+  - first:
+      213: 1507337356364494629
+    second: bg_38
+  - first:
+      213: 4752078226124088416
+    second: bg_39
+  - first:
+      213: -3548231368724468398
+    second: bg_40
+  - first:
+      213: -3150137842901214485
+    second: bg_41
+  - first:
+      213: -1680292356739925009
+    second: bg_42
+  - first:
+      213: -2922924993040004473
+    second: bg_43
+  - first:
+      213: 3294404829810271076
+    second: bg_44
+  - first:
+      213: 7443828895591594105
+    second: bg_45
+  - first:
+      213: -7310973039957763228
+    second: bg_46
+  - first:
+      213: 8996400067241636079
+    second: bg_47
+  - first:
+      213: -1659868152213972000
+    second: bg_48
+  - first:
+      213: 2857935415065475135
+    second: bg_49
+  - first:
+      213: 6477439838956255726
+    second: bg_50
+  - first:
+      213: -6717283665127685477
+    second: bg_51
+  - first:
+      213: 3222270964468206308
+    second: bg_52
+  - first:
+      213: -1059676026083910342
+    second: bg_53
+  - first:
+      213: 2527434692220548766
+    second: bg_54
+  - first:
+      213: 5234906925745482209
+    second: bg_55
+  - first:
+      213: 7933028637204245499
+    second: bg_56
+  - first:
+      213: -321207978218980121
+    second: bg_57
+  - first:
+      213: -3352100524782413684
+    second: bg_58
+  - first:
+      213: 6405279163232609672
+    second: bg_59
+  - first:
+      213: 5727235645542919474
+    second: bg_60
+  - first:
+      213: 1298996806878141279
+    second: bg_0
+  - first:
+      213: 5589622413874618355
+    second: bg_61
+  - first:
+      213: -961702848045096813
+    second: bg_62
+  - first:
+      213: -2669432371168243088
+    second: bg_63
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,12 +235,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 100, y: 100, z: 100, w: 100}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -85,7 +280,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: bg_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 700
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b9656a6b6f60210800000000000000
+      internalID: 1298996806878141279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bg_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 700
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 243ba75661d73e970800000000000000
+      internalID: 8783001233447891778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bg_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 600
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fef90a6180e868310800000000000000
+      internalID: 1406968098990366703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bg_3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 600
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78b07545b04e78e0800000000000000
+      internalID: -1693845262546454406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
