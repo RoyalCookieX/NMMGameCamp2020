@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AreaCapture : MonoBehaviour
 {
+    public Vector3 speed;
     public float red;
     public float blue;
     // Start is called before the first frame update
@@ -16,20 +17,10 @@ public class AreaCapture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(speed * Time.deltaTime); 
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "red")
-        {
-            red += 10;
-        }
-        else
-        {
-            if (other.gameObject.tag == "blue")
-                blue += 10;
-        }
-    }
+    
+    
     void OnGUI()
     {
         GUI.Label(new Rect(10, 30, 100, 35), "red: " + red);

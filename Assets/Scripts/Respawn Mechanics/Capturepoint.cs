@@ -8,10 +8,13 @@ public class Capturepoint : Spawnpoint
     public event OnCapture onCaptureEvent;
     public Dictionary<TeamData, float> teamProgress;
     public float maxProgress = 10;
+    public float radius;
+  
 
     private void Start()
     {
         teamProgress = new Dictionary<TeamData, float>();
+        
     }
 
     [ContextMenu("Update Capturepoint")]
@@ -20,19 +23,53 @@ public class Capturepoint : Spawnpoint
         OnCaptured(teamData);
     }
 
-    public void AddProgress(TeamData teamData, float progressToAdd = 0.01f)
+    public void AddProgress(TeamData team, float progressToAdd = 0.01f)
     {
-        if (base.teamData == teamData) return;
-        if (!teamProgress.ContainsKey(teamData)) teamProgress.Add(teamData, 0);
-        if(teamProgress[teamData] < maxProgress) teamProgress[teamData] += progressToAdd;
-        else OnCaptured(teamData);
+        if (base.teamData == team) return;
+        if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
+        if (teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
+        else OnCaptured(team);
     }
 
-    void OnCaptured(TeamData teamData)
+    void OnCaptured(TeamData team)
     {
-        if (!teamData) return;
-        onCaptureEvent?.Invoke(teamData, this);
-        base.teamData = teamData;
+        if (!team || this.teamData == team) return;
+        onCaptureEvent?.Invoke(team, this);
+        base.teamData = team;
         teamProgress = new Dictionary<TeamData, float>();
+    }
+
+    Vector2 PointInsideCircle()
+    {
+        //var x = transform.position.x;
+        //var y = transform.position.y;
+
+
+        //Vector2 randomPoint = Random.insideUnitCircle * radius;
+        //var newx = randomPoint.x + x;
+        //var newy = randomPoint.y + y;
+
+        //return new Vector2 (newx, newy);
+        return (Vector2)transform.position + (Random.insideUnitCircle * radius);
+    }
+
+    private void FixedUpdate()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        if (colliders != null)
+        {
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.transform.root.TryGetComponent(out Character character))
+                {
+                    AddProgress(character.teamData);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
