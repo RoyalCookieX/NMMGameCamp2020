@@ -25,7 +25,7 @@ public class Player : Character
     private void Start()
     {
         cam = GameCamera.Instance.Cam;
-        PlayerGUI.Player = this;
+        PlayerGUI.CurrentPlayer = this;
     }
 
     void Update()
@@ -83,6 +83,7 @@ public class Player : Character
 
     public override void Die()
     {
+        AudioManager.Instance.PlaySound("meow-death", transform.position, Quaternion.identity);
         IEnumerator DieEnumerator()
         {
             anim.SetTrigger("die");
@@ -93,21 +94,9 @@ public class Player : Character
         StartCoroutine(DieEnumerator());
     }
 
-    //private void OnGUI()
-    //{
-    //    GUI.color = gradient.Evaluate(1 - (Health / 100));
-    //    GUI.Label(healthRect, $"Health: {Health}");
-    //    if (!weapon) return;
-    //    GUI.color = gradient.Evaluate(1 - ((float)weapon.CurAmmo / weapon.GetWeaponData().ammo));
-    //    GUI.Label(ammoRect, $"Ammo: {weapon.CurAmmo}/{weapon.GetWeaponData().ammo}");
-    //    GUI.color = gradient.Evaluate(weapon.CurCooldown * weapon.GetWeaponData().fireRate);
-    //    GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurCooldown * weapon.GetWeaponData().fireRate * 100) / 100}");
-    //}
-
-    [ContextMenu("Take Damage")]
+    [ContextMenu("Test")]
     void Test()
     {
-        if (!Application.isPlaying) return;
-        TakeDamage(10);
+        TakeDamage(100);
     }
 }

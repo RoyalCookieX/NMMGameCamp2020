@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Capturepoint : Spawnpoint
 {
-    [SerializeField] ParticleSystem particles;
     public delegate void OnCapture(TeamData teamName, Capturepoint capturepoint);
     public event OnCapture onCaptureEvent;
+
+    [Header("Capturepoint Components")]
+    [SerializeField] ParticleSystem particles;
     public Dictionary<TeamData, float> teamProgress;
+
+    [Space]
+    [Header("Capturepoint Properties")]
     public float maxProgress = 10;
     public float radius;
   
@@ -15,28 +20,23 @@ public class Capturepoint : Spawnpoint
     private void Start()
     {
         teamProgress = new Dictionary<TeamData, float>();
-        
+        var main = particles.main;
+        main.startColor = teamData != null ? teamData.teamColor : Color.white;
     }
 
-    [ContextMenu("Update Capturepoint")]
-    void UpdateCapturepoint()
+    public void AddProgress(TeamData teamData, float progressToAdd = 0.01f)
     {
-        OnCaptured(teamData);
+        if (this.teamData == teamData) return;
+        if (!teamProgress.ContainsKey(teamData)) teamProgress.Add(teamData, 0);
+        if (teamProgress[teamData] < maxProgress) teamProgress[teamData] += progressToAdd;
+        else SetTeam(teamData);
     }
 
-    public void AddProgress(TeamData team, float progressToAdd = 0.01f)
+    void SetTeam(TeamData teamData)
     {
-        if (base.teamData == team) return;
-        if (!teamProgress.ContainsKey(team)) teamProgress.Add(team, 0);
-        if (teamProgress[team] < maxProgress) teamProgress[team] += progressToAdd;
-        else OnCaptured(team);
-    }
-
-    void OnCaptured(TeamData team)
-    {
-        if (!team || this.teamData == team) return;
-        onCaptureEvent?.Invoke(team, this);
-        base.teamData = team;
+        if (!teamData || this.teamData == teamData) return;
+        onCaptureEvent?.Invoke(teamData, this);
+        this.teamData = teamData;
         var main = particles.main;
         main.startColor = teamData.teamColor;
         teamProgress = new Dictionary<TeamData, float>();

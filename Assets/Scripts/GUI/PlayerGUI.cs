@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerGUI : MonoBehaviour
 {
     public static PlayerGUI Instance { get; private set; }
-    public static Player Player;
+    public static Player CurrentPlayer;
 
     [Header("PlayerGUI Components")]
     [SerializeField] Transform healthbar;
@@ -19,14 +19,14 @@ public class PlayerGUI : MonoBehaviour
 
     private void Update()
     {
-        if (!Player) return;
-        healthbar.localScale = new Vector3(Mathf.Clamp(Player.Health / 100, 0, 1), 1, 1);
+        if (!CurrentPlayer) return;
+        healthbar.localScale = new Vector3(Mathf.Clamp(CurrentPlayer.Health / 100, 0, 1), 1, 1);
 
-        if (Player.Weapon)
+        if (CurrentPlayer.Weapon)
         {
-            ammoText.text = $"{Player.Weapon.CurAmmo}/{Player.Weapon.GetWeaponData().ammo}";
-            reloadIcon.gameObject.SetActive(Player.Weapon.CurCooldown > 0);
-            if (Player.Weapon.CurCooldown > 0)
+            ammoText.text = $"{CurrentPlayer.Weapon.CurAmmo}/{CurrentPlayer.Weapon.GetWeaponData().ammo}";
+            reloadIcon.gameObject.SetActive(CurrentPlayer.Weapon.CurCooldown > 0);
+            if (CurrentPlayer.Weapon.CurCooldown > 0)
             {
                 reloadIcon.transform.rotation = Quaternion.AngleAxis(Time.time * reloadIconSpeed, Vector3.forward);
             }
@@ -36,5 +36,25 @@ public class PlayerGUI : MonoBehaviour
             ammoText.text = "";
             reloadIcon.gameObject.SetActive(false);
         }
+    }
+
+    public Vector2 GetNearestPoint(Vector2[] worldPoints)
+    {
+        float GetMagnitude(Vector2 point) { return ((Vector2)CurrentPlayer.transform.position - point).magnitude; }
+
+        if (worldPoints.Length <= 1) return new Vector2();
+        float curMagnitude = GetMagnitude(worldPoints[0]);
+        Vector2 result = worldPoints[0];
+
+        for(int i = 1; i < worldPoints.Length; i++)
+        {
+            float magnitude = GetMagnitude(worldPoints[i]);
+            if(magnitude < curMagnitude)
+            {
+                curMagnitude = magnitude;
+                result = worldPoints[i];
+            }
+        }
+        return result;
     }
 }
