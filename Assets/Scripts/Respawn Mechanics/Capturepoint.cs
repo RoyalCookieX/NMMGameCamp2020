@@ -35,4 +35,5 @@ public class Capturepoint : Spawnpoint
         base.teamData = teamData;
         teamProgress = new Dictionary<TeamData, float>();
     }
+
 }
