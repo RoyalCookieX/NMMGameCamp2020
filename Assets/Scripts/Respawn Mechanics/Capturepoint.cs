@@ -35,5 +35,23 @@ public class Capturepoint : Spawnpoint
         base.teamData = teamData;
         teamProgress = new Dictionary<TeamData, float>();
     }
+<<<<<<< Updated upstream
+=======
 
+    Vector2 PointInsideCircle()
+    {
+        var x = transform.position.x;
+        var y = transform.position.y;
+
+
+        Vector2 randomPoint = Random.insideUnitCircle * radius;
+        var newx = randomPoint.x + x;
+        var newy = randomPoint.y + y;
+
+        return new Vector2(newx, newy);
+
+    }
+
+
+>>>>>>> Stashed changes
 }
