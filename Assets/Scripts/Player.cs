@@ -25,6 +25,7 @@ public class Player : Character
     private void Start()
     {
         cam = GameCamera.Instance.Cam;
+        PlayerGUI.CurrentPlayer = this;
     }
 
     void Update()
@@ -54,8 +55,8 @@ public class Player : Character
         //shooting a weapon
         if (weapon)
         {
-            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
-            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
+            if (Input.GetButtonDown("Fire1") && weapon.GetWeaponData().type == WeaponType.SEMIAUTO) weapon.Fire();
+            else if (Input.GetButton("Fire1") && weapon.GetWeaponData().type == WeaponType.AUTO) weapon.Fire();
             if (Input.GetKeyDown(KeyCode.R)) weapon.Reload();
         }
 
@@ -82,6 +83,7 @@ public class Player : Character
 
     public override void Die()
     {
+        AudioManager.Instance.PlaySound("meow-death", transform.position, Quaternion.identity);
         IEnumerator DieEnumerator()
         {
             anim.SetTrigger("die");
@@ -92,14 +94,9 @@ public class Player : Character
         StartCoroutine(DieEnumerator());
     }
 
-    private void OnGUI()
+    [ContextMenu("Test")]
+    void Test()
     {
-        GUI.color = gradient.Evaluate(1 - (Health / 100));
-        GUI.Label(healthRect, $"Health: {Health}");
-        if (!weapon) return;
-        GUI.color = gradient.Evaluate(1 - ((float)weapon.CurrentAmmo / weapon.GetData().ammo));
-        GUI.Label(ammoRect, $"Ammo: {weapon.CurrentAmmo}/{weapon.GetData().ammo}");
-        GUI.color = gradient.Evaluate(weapon.CurrentCooldown * weapon.GetData().fireRate);
-        GUI.Label(cooldownRect, $"Cooldown: {Mathf.Round(weapon.CurrentCooldown * weapon.GetData().fireRate * 100) / 100}");
+        TakeDamage(100);
     }
 }

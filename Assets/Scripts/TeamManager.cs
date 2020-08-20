@@ -34,15 +34,6 @@ public class TeamManager : MonoBehaviour
         if(Instance = this) Instance = null;
     }
 
-    public void OnPointCaptured(Capturepoint capturepoint, Team oldTeam, Team newTeam)
-    {
-        if (!newTeam.teamSpawnpoints.Contains(capturepoint))
-        {
-            newTeam.teamSpawnpoints.Add(capturepoint);
-            oldTeam.teamSpawnpoints.Remove(capturepoint);
-        }
-    }
-
     public Team GetTeam(TeamData teamData)
     {
         Team team = teams.Find(_team => _team.teamData == teamData);
@@ -80,10 +71,33 @@ public class TeamManager : MonoBehaviour
             team.uncapturedpoints = allCapturepoints.FindAll(spawnpoint => spawnpoint.teamData != team.teamData);
             teams.Add(team);
 
+            //sub all capturepoint methods to 
+            foreach(Capturepoint capturepoint in allCapturepoints)
+            {
+                capturepoint.onCaptureEvent += OnPointCaptured;
+            }
+
             //spawn each character
             for(int characterIndex = 0; characterIndex < team.characterList.Count; characterIndex++)
             {
                 SpawnCharacter(teamIndex, characterIndex, 0);
+            }
+        }
+    }
+
+    private void OnPointCaptured(TeamData teamData, Capturepoint capturepoint)
+    {
+        foreach(Team team in teams)
+        {
+            if(team.teamData == teamData)
+            {
+                if(!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
+                if(team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Remove(capturepoint);
+            }
+            else
+            {
+                if (!team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Add(capturepoint);
+                if (team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Remove(capturepoint);
             }
         }
     }

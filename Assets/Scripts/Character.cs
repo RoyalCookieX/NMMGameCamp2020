@@ -8,7 +8,8 @@ public abstract class Character : MonoBehaviour, IDamageable
     public event Action<Character> OnDeathEvent;
 
     [Header("Character Components")]
-    public Weapon weapon = null;
+    [SerializeField] protected Weapon weapon = null;
+    public Weapon Weapon { get { return weapon; } }
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform armGraphics = null;
@@ -18,7 +19,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] public TeamData teamData;
 
     [Space]
-    [Header("Character Properties")]
+    [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
@@ -37,16 +38,8 @@ public abstract class Character : MonoBehaviour, IDamageable
         else SpawnCooldown = 0;
     }
 
-    public virtual void SetArmAngle(float angle)
+    protected virtual void SetArmAngle(float angle)
     {
-        arm.localEulerAngles = Vector3.forward * angle;
-        arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
-        characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
-    }
-
-    public virtual void SetArmAngle(Vector2 targetPos)
-    {
-        float angle = Vector2.SignedAngle(Vector3.right, targetPos - (Vector2)transform.position);
         arm.localEulerAngles = Vector3.forward * angle;
         arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
         characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
@@ -76,12 +69,12 @@ public abstract class Character : MonoBehaviour, IDamageable
         this.weapon = weapon;
         weapon.teamData = teamData;
 
-        if (weapon.transform.TryGetComponent(out Rigidbody2D rb))
+        if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
         }
-        if (weapon.transform.TryGetComponent(out Collider2D col))
+        if(weapon.transform.TryGetComponent(out Collider2D col))
         {
             col.enabled = false;
         }
@@ -101,7 +94,7 @@ public abstract class Character : MonoBehaviour, IDamageable
         weapon.transform.rotation = Quaternion.identity;
         weapon.transform.localScale = Vector3.one;
 
-        if (weapon.transform.TryGetComponent(out Rigidbody2D rb))
+        if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
             rb.isKinematic = false;
         }
