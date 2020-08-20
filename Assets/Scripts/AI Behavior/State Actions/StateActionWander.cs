@@ -7,5 +7,6 @@ public class StateActionWander : StateAction
 {
     public override void Tick(){
         //wander around map, seek to kill enemies
+        parentNode.Success(this);
     }
 }

@@ -14,12 +14,24 @@ public class WeaponBehaviorMediumRifle : WeaponBehavior
 
     public override WeaponBehaviorStatus Attack()
     {
+        bool isInRange = MoveToRange();
         if (weapon.CurrentAmmo == 0) weapon.Reload();
-        if (weapon.CurrentCooldown <= 0)
+        if (weapon.CurrentCooldown <= 0 && isInRange)
         {
+            nonPlayerCharacter.SetArmAngle(nonPlayerCharacter.target.transform.position);
             weapon.Fire();
             return WeaponBehaviorStatus.Success;
         }
         return WeaponBehaviorStatus.Doing;
     }
+
+    public override WeaponBehaviorStatus Idle()
+    {
+        return WeaponBehaviorStatus.Success;
+    }
+
+    // public override void Movement(){
+    //     Vector2 targetPos = nonPlayerCharacter.target.transform.position;
+    //     if()
+    // }
 }

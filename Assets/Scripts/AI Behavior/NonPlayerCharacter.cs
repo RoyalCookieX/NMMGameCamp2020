@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NonPlayerCharacter : Character
 {
+    public float movementSpeed;
+    
     public Character target;
     public Capturepoint captureTarget;
     public StateRoot rootNode;
@@ -21,11 +23,6 @@ public class NonPlayerCharacter : Character
     void Update()
     {
         rootNode.Tick();
-    }
-
-    public void SetArmTemp(float angle)
-    {
-        SetArmAngle(angle);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

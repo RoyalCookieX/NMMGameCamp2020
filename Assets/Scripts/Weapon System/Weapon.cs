@@ -82,7 +82,7 @@ public abstract class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        CurrentCooldown = 1f / weaponData.fireRate;
+        CurrentCooldown = weaponData.reloadDuration;
         CurrentAmmo = weaponData.ammo;
     }
 

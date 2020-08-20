@@ -10,7 +10,10 @@ public class WeaponData : ScriptableObject
     public WeaponBehavior weaponBehavior;
 
     public string weaponName;
+    public float minAttackRange;      //used for ai distances. minimum distance ai must be from target to attack.
+    public float maxAttackRange;      //used for ai distances. maximum distance ai must be from target to attack.
     public float fireRate;
+    public float reloadDuration;
     public int ammo;
     public Projectile projectile;
 }

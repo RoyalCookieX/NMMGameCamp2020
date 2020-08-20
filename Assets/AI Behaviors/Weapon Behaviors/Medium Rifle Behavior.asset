@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f87bd3dde28b54e8392eab17a391f2, type: 3}
   m_Name: Medium Rifle Behavior
   m_EditorClassIdentifier: 
+  nonPlayerCharacter: {fileID: 0}
