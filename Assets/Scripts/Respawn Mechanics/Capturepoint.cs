@@ -41,15 +41,35 @@ public class Capturepoint : Spawnpoint
 
     Vector2 PointInsideCircle()
     {
-        var x = transform.position.x;
-        var y = transform.position.y;
+        //var x = transform.position.x;
+        //var y = transform.position.y;
 
 
-        Vector2 randomPoint = Random.insideUnitCircle * radius;
-        var newx = randomPoint.x + x;
-        var newy = randomPoint.y + y;
+        //Vector2 randomPoint = Random.insideUnitCircle * radius;
+        //var newx = randomPoint.x + x;
+        //var newy = randomPoint.y + y;
 
-        return new Vector2 (newx, newy);
-       
+        //return new Vector2 (newx, newy);
+        return (Vector2)transform.position + (Random.insideUnitCircle * radius);
+    }
+
+    private void FixedUpdate()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        if (colliders != null)
+        {
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.transform.root.TryGetComponent(out Character character))
+                {
+                    AddProgress(character.teamData);
+                }
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }
