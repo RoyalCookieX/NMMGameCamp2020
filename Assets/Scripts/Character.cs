@@ -15,7 +15,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     [SerializeField] protected Transform arm = null;
     [SerializeField] protected Transform armGraphics = null;
     [SerializeField] protected Transform weaponPoint = null;
-    [SerializeField] protected Animator anim;
+    public Animator anim;
     //[SerializeField] public Team CharTeam { get; set; }
     [SerializeField] public TeamData teamData;
 
@@ -95,6 +95,7 @@ public abstract class Character : MonoBehaviour, IDamageable
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
         weapon.transform.localScale = Vector3.one;
+        weapon.decayTimer = 5f;
     }
 
     public virtual void DropWeapon()
@@ -102,7 +103,7 @@ public abstract class Character : MonoBehaviour, IDamageable
         if (!weapon) return;
 
         weapon.transform.parent = null;
-        weapon.transform.position = transform.position - Vector3.up;
+        weapon.transform.position = transform.position;// - Vector3.up;
         weapon.transform.rotation = Quaternion.identity;
         weapon.transform.localScale = Vector3.one;
 

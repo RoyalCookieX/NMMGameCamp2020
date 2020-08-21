@@ -12,18 +12,20 @@ public abstract class Weapon : MonoBehaviour
     public WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
+    [HideInInspector] public float decayTimer;
+    public float inaccuracy;
     public float CurrentCooldown { get; private set; }
     public int CurrentAmmo { get; private set; }
 
     private void Awake()
     {
-        //InstantiateWeaponBehavior();
+        decayTimer = 5f;
     }
 
     protected virtual void Start()
     {
         pool = new Queue<GameObject>(Size);
-        for(int i = 0; i < Size; i++)
+        for (int i = 0; i < Size; i++)
         {
             GameObject obj = Instantiate(weaponData.projectile.gameObject);
             obj.SetActive(false);
@@ -34,13 +36,18 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(gameObject.activeInHierarchy && CurrentCooldown > 0)
+        if (gameObject.activeInHierarchy && CurrentCooldown > 0)
         {
             CurrentCooldown -= Time.deltaTime;
         }
         else
         {
             CurrentCooldown = 0;
+        }
+        if (!transform.parent) decayTimer -= Time.deltaTime;
+        if (decayTimer <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -55,7 +62,8 @@ public abstract class Weapon : MonoBehaviour
         {
             CurrentAmmo--;
             CurrentCooldown = 1f / weaponData.fireRate;
-            GetFromPool(firePoint.position, firePoint.rotation);
+            GameObject proj = GetFromPool(firePoint.position, firePoint.rotation);
+            proj.transform.Rotate(new Vector3(0, 0, 45 * inaccuracy));
         }
     }
 
@@ -67,7 +75,7 @@ public abstract class Weapon : MonoBehaviour
         obj.transform.position = position;
         obj.transform.rotation = rotation;
 
-        if(obj.TryGetComponent(out IPoolObject poolObject))
+        if (obj.TryGetComponent(out IPoolObject poolObject))
         {
             poolObject.OnSpawnObject(this);
         }

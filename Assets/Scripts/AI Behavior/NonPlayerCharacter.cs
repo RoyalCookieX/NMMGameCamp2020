@@ -13,11 +13,10 @@ public class NonPlayerCharacter : Character
     public Capturepoint captureTarget;
     public StateRoot rootNode;
 
-    public StateRoot behaviorTree;
+    [HideInInspector] public StateRoot behaviorTree;
 
     void Awake()
     {
-        //behaviorTree.InitializeNode(this);
         CreateBehaviorTree();
         behaviorTree.InitializeNode(this);
     }

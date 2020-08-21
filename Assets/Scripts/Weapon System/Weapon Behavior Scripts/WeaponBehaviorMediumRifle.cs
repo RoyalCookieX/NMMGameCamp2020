@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Weapon Behaviors/Medium Rifle Behavior")]
@@ -10,6 +11,8 @@ public class WeaponBehaviorMediumRifle : WeaponBehavior
 
     public override WeaponBehaviorStatus Attack()
     {
+        //Debug.Log(nonPlayerCharacter);
+        if (!nonPlayerCharacter.target) return WeaponBehaviorStatus.Fail;
         nonPlayerCharacter.SetArmAngle(nonPlayerCharacter.target.transform.position);
         bool isInRange = MoveToRange();
         if (weapon.CurrentAmmo == 0) weapon.Reload();

@@ -12,16 +12,17 @@ public class StateActionAnimatorToggler : StateAction
     {
         foreach(string parameter in falseBools)
         {
-            //nonPlayerCharacter.animator
+            nonPlayerCharacter.anim.SetBool(parameter, false);
         }
         foreach (string parameter in trueBools)
         {
-
+            nonPlayerCharacter.anim.SetBool(parameter, true);
         }
         foreach (string parameter in triggers)
         {
-
+            nonPlayerCharacter.anim.SetTrigger(parameter);
         }
+        parentNode.Success(this);
     }
 
     public override void Tick()

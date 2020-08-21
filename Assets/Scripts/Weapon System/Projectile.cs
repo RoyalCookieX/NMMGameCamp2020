@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour, IPoolObject
     [SerializeField] float damage = 0;
     [SerializeField] float maxLifetime = 1;
     [SerializeField] float speed = 10;
+    [SerializeField] int penetration;
     float curLifetime = 1;
     TeamData teamData;
 
@@ -50,7 +51,14 @@ public class Projectile : MonoBehaviour, IPoolObject
                 GameObject hitParticle = Instantiate(Resources.Load<GameObject>("LaserHitParticle"), transform.position, Quaternion.identity);
             }
             damageable.TakeDamage(damage);
-            gameObject.SetActive(false);
+            if (penetration == 0)
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                penetration -= 1;
+            }
         }
     }
 

@@ -16,6 +16,7 @@ MonoBehaviour:
   parentNode: {fileID: 0}
   conditions:
   - {fileID: 11400000, guid: 1156534669bee574db7fb32c1be27e94, type: 2}
+  - {fileID: 11400000, guid: 3d42caeda2ab17649a0d41d53101d6f5, type: 2}
   nodes:
   - {fileID: 11400000, guid: c7d1eaa1968d1714898dd428484beaed, type: 2}
   - {fileID: 11400000, guid: d8210f13bd97f834c880b15a35cf86d8, type: 2}
