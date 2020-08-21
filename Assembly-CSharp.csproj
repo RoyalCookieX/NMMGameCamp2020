@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\ScriptableObjects\TeamData.cs" />
     <Compile Include="Assets\ScriptableObjects\WeaponData.cs" />
+    <Compile Include="Assets\Scripts\AI Behavior\AnimationToggle.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\NonPlayerCharacter.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionAttack.cs" />
     <Compile Include="Assets\Scripts\AI Behavior\State Actions\StateActionGetNearestCapturePoint.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Scripts\HitParticle.cs" />
     <Compile Include="Assets\Scripts\IDamageable.cs" />
     <Compile Include="Assets\Scripts\LaserHitParticle.cs" />
+    <Compile Include="Assets\Scripts\NonPlayerCharacter Scripts\StateActionAnimatorToggler.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\PlayerMov.cs" />
     <Compile Include="Assets\Scripts\Respawn Mechanics\Capturepoint.cs" />

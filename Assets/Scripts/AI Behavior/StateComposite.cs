@@ -42,16 +42,6 @@ public abstract class StateComposite : StateNode
 
     public override void Tick()
     {
-        foreach(StateNode node in nodes)
-        {
-            if (node is StateComposite composite)
-            {
-                foreach(StateNode node2 in composite.nodes)
-                {
-                    Debug.Log("NODE2 : " + node2.GetType());
-                }
-            }
-        }
         if (!CheckConditions())
         {
             parentNode.Fail(this);

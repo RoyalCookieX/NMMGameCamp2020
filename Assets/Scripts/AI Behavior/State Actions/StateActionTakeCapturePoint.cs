@@ -10,21 +10,37 @@ public class StateActionTakeCapturePoint : StateAction
 
     public override void OnEnter()
     {
+        if (nonPlayerCharacter.captureTarget == null) parentNode.Fail(this);
+        float distance = Vector2.Distance(nonPlayerCharacter.transform.position, nonPlayerCharacter.captureTarget.transform.position);
+        float captureTargetRadius = nonPlayerCharacter.captureTarget.radius;
+        if (distance < captureTargetRadius - 0.5f)
+        {
+            parentNode.Fail(this);
+            return;
+        }
         destination = nonPlayerCharacter.captureTarget.PointInsideCircle();
     }
 
     public override void Tick()
     {
+        //float distance = Vector2.Distance(nonPlayerCharacter.transform.position, nonPlayerCharacter.captureTarget.transform.position);
+        //float captureTargetRadius = nonPlayerCharacter.captureTarget.radius;
+        //if (distance < captureTargetRadius - 0.5f)
+        //{
+        //    parentNode.Fail(this);
+        //    return;
+        //}
         if (nonPlayerCharacter.captureTarget.teamData == nonPlayerCharacter.teamData)
         {
-            nonPlayerCharacter.captureTarget = null;
+            //nonPlayerCharacter.captureTarget = null;
             parentNode.Fail(this);
             return;
         }
         //destination = nonPlayerCharacter.captureTarget.PointInsideCircle();
-        Vector2 dir = nonPlayerCharacter.captureTarget.transform.position - nonPlayerCharacter.transform.position;
+        Vector2 dir = destination - (Vector2)nonPlayerCharacter.transform.position;
         nonPlayerCharacter.transform.Translate(dir.normalized * nonPlayerCharacter.movementSpeed * Time.deltaTime);
-        if(Vector2.Distance(nonPlayerCharacter.transform.position, destination) < 0.4f)
+        //Debug.Log(destination);
+        if(Vector2.Distance(nonPlayerCharacter.transform.position, destination) < .4f)
         {
             parentNode.Success(this);
             Debug.Log("TAKING SUCCESS");

@@ -22,7 +22,6 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
-        print(weaponData);
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {

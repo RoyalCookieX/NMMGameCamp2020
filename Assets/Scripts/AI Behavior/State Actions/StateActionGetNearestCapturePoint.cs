@@ -7,11 +7,11 @@ public class StateActionGetNearestCapturePoint : StateAction
 {
     public override void Tick()
     {
-        if (nonPlayerCharacter.captureTarget)
-        {
-            parentNode.Fail(this);
-            return;
-        }
+        //if (nonPlayerCharacter.captureTarget)
+        //{
+        //    parentNode.Fail(this);
+        //    return;
+        //}
         if (nonPlayerCharacter.GetTeam().uncapturedPoints.Count == 0)
         {
             parentNode.Fail(this);
