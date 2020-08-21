@@ -10,7 +10,7 @@ public class GameCamera : MonoBehaviour
     [SerializeField] Camera cam;
     public Camera Cam { get { return cam; } }
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);

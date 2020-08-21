@@ -7,15 +7,30 @@ public class PlayerGUI : MonoBehaviour
 {
     public static PlayerGUI Instance { get; private set; }
     public static Player CurrentPlayer;
+    public static List<Transform> UncapturedPoints;
 
     [Header("PlayerGUI Components")]
     [SerializeField] Transform healthbar;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] Transform reloadIcon;
+    [SerializeField] TMP_Text titleText;
 
     [Space]
     [Header("PlayerGUI Properties")]
     [SerializeField] float reloadIconSpeed = -120;
+
+    Coroutine titleCoroutine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else Destroy(gameObject);
+
+    }
 
     private void Update()
     {
@@ -38,23 +53,21 @@ public class PlayerGUI : MonoBehaviour
         }
     }
 
-    public Vector2 GetNearestPoint(Vector2[] worldPoints)
+    private void OnDestroy()
     {
-        float GetMagnitude(Vector2 point) { return ((Vector2)CurrentPlayer.transform.position - point).magnitude; }
+        if (Instance = this) Instance = null;
+    }
 
-        if (worldPoints.Length <= 1) return new Vector2();
-        float curMagnitude = GetMagnitude(worldPoints[0]);
-        Vector2 result = worldPoints[0];
+    public void SetTitle(string text, float duration)
+    {
+        if (titleCoroutine != null) StopCoroutine(titleCoroutine);
+        titleCoroutine = StartCoroutine(TitleCoroutine(text, duration));
+    }
 
-        for(int i = 1; i < worldPoints.Length; i++)
-        {
-            float magnitude = GetMagnitude(worldPoints[i]);
-            if(magnitude < curMagnitude)
-            {
-                curMagnitude = magnitude;
-                result = worldPoints[i];
-            }
-        }
-        return result;
+    IEnumerator TitleCoroutine(string text, float duration)
+    {
+        titleText.text = text;
+        yield return new WaitForSecondsRealtime(duration);
+        titleText.text = "";
     }
 }
