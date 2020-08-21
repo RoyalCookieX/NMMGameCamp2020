@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d1b887de1c34944bb4d33a7dcb1129, type: 3}
+  m_Name: Capturer_0_Root Node
+  m_EditorClassIdentifier: 
+  nonPlayerCharacter: {fileID: 0}
+  parentNode: {fileID: 0}
+  conditions: []
+  nodes:
+  - {fileID: 11400000, guid: f4d3aa0fa0177844a9d5715d31acdb45, type: 2}
+  - {fileID: 11400000, guid: c7d1eaa1968d1714898dd428484beaed, type: 2}
+  - {fileID: 11400000, guid: 0f3120eb3065f394d8aaae7f2f08e3f6, type: 2}
+  currentNode: {fileID: 11400000, guid: 0f3120eb3065f394d8aaae7f2f08e3f6, type: 2}

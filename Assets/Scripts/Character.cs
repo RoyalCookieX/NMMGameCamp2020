@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour, IDamageable
@@ -8,7 +9,7 @@ public abstract class Character : MonoBehaviour, IDamageable
     public event Action<Character> OnDeathEvent;
 
     [Header("Character Components")]
-    [SerializeField] protected Weapon weapon = null;
+    public Weapon weapon = null;
     public Weapon Weapon { get { return weapon; } }
     [SerializeField] protected Transform characterGraphics = null;
     [SerializeField] protected Transform arm = null;
@@ -26,8 +27,9 @@ public abstract class Character : MonoBehaviour, IDamageable
     public bool IsSpawning { get; private set; } = false;
     public float SpawnCooldown { get; private set; } = 0;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
+        if(weapon)weapon.InstantiateWeaponBehavior();
         IsSpawning = false;
         health = 100;
     }
@@ -38,9 +40,19 @@ public abstract class Character : MonoBehaviour, IDamageable
         else SpawnCooldown = 0;
     }
 
-    protected virtual void SetArmAngle(float angle)
+    public virtual void SetArmAngle(float angle)
     {
         arm.localEulerAngles = Vector3.forward * angle;
+        arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
+        characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
+    }
+
+    public virtual void SetArmAngle(Vector2 targetPos)
+    {
+        float angle = Vector2.SignedAngle(Vector2.right, targetPos - (Vector2)transform.position);
+        arm.localEulerAngles = Vector3.forward * angle;
+        arm.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
         arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
         characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
     }

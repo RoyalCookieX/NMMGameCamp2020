@@ -4,19 +4,26 @@ using UnityEngine;
 
 public abstract class StateNode : ScriptableObject
 {
-    public Character character;
+    [HideInInspector] public NonPlayerCharacter nonPlayerCharacter;
 
-    public virtual void InitializeNode(Character character){
-        this.character = character;
+    [HideInInspector] public StateComposite parentNode;
+
+    public virtual void InitializeNode(NonPlayerCharacter nonPlayerCharacter)
+    {
+        this.nonPlayerCharacter = nonPlayerCharacter;
     }
 
-    public virtual void OnEnter(){
+    public virtual void OnEnter()
+    {
 
     }
 
     public abstract void Tick();
 
-    public virtual void OnExit(){
+    public virtual void OnExit()
+    {
 
     }
+
+    //public abstract void InstantiateSubNodes();
 }

@@ -39,9 +39,9 @@ public class PlayerGUI : MonoBehaviour
 
         if (CurrentPlayer.Weapon)
         {
-            ammoText.text = $"{CurrentPlayer.Weapon.CurAmmo}/{CurrentPlayer.Weapon.GetWeaponData().ammo}";
-            reloadIcon.gameObject.SetActive(CurrentPlayer.Weapon.CurCooldown > 0);
-            if (CurrentPlayer.Weapon.CurCooldown > 0)
+            ammoText.text = $"{CurrentPlayer.Weapon.CurrentAmmo}/{CurrentPlayer.Weapon.GetWeaponData().ammo}";
+            reloadIcon.gameObject.SetActive(CurrentPlayer.Weapon.CurrentCooldown > 0);
+            if (CurrentPlayer.Weapon.CurrentCooldown > 0)
             {
                 reloadIcon.transform.rotation = Quaternion.AngleAxis(Time.time * reloadIconSpeed, Vector3.forward);
             }

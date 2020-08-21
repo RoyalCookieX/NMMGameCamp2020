@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAction : StateNode
+public abstract class StateAction : StateNode
 {
-    public override void Tick(){
-        
+    public virtual void Success(){
+        parentNode.Success(this);
+    }
+
+    public virtual void Fail(){
+        parentNode.Fail(this);
     }
 }

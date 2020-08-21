@@ -74,7 +74,7 @@ public class TeamManager : MonoBehaviour
             //get all team's spawnpoints in the scene
             team.teamSpawnpoints = allSpawnpoints.FindAll(spawnpoint => spawnpoint.teamData == team.teamData);
             //get all uncapturedpoints for this team in the scene
-            team.uncapturedpoints = allCapturepoints.FindAll(spawnpoint => spawnpoint.teamData != team.teamData);
+            team.uncapturedPoints = allCapturepoints.FindAll(spawnpoint => spawnpoint.teamData != team.teamData);
             teams.Add(team);
 
             //sub all capturepoint methods to 
@@ -99,12 +99,12 @@ public class TeamManager : MonoBehaviour
             if(team.teamData == teamData)
             {
                 if (countdownCoroutine != null) StopCoroutine(countdownCoroutine);
-                if (!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
-                if(team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Remove(capturepoint);
+                if(!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
+                if(team.uncapturedPoints.Contains(capturepoint)) team.uncapturedPoints.Remove(capturepoint);
             }
             else
             {
-                if (!team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Add(capturepoint);
+                if (!team.uncapturedPoints.Contains(capturepoint)) team.uncapturedPoints.Add(capturepoint);
                 if (team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Remove(capturepoint);
             }
 

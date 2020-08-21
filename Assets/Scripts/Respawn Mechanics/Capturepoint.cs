@@ -16,7 +16,6 @@ public class Capturepoint : Spawnpoint
     [Header("Capturepoint Properties")]
     public float maxProgress = 10;
     public float radius;
-  
 
     private void Start()
     {
@@ -47,18 +46,9 @@ public class Capturepoint : Spawnpoint
         trackingArrow.SetColor(teamData.teamColor);
     }
 
-    Vector2 PointInsideCircle()
+    public Vector2 PointInsideCircle()
     {
-        //var x = transform.position.x;
-        //var y = transform.position.y;
-
-
-        //Vector2 randomPoint = Random.insideUnitCircle * radius;
-        //var newx = randomPoint.x + x;
-        //var newy = randomPoint.y + y;
-
-        //return new Vector2 (newx, newy);
-        return (Vector2)transform.position + (Random.insideUnitCircle * radius);
+        return (Vector2)transform.position + (Random.insideUnitCircle * (radius-0.5f));
     }
 
     private void FixedUpdate()

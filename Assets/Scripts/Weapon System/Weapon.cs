@@ -9,14 +9,20 @@ public abstract class Weapon : MonoBehaviour
     public int Size { get; set; } = 10;
     public TeamData teamData;
 
-    [SerializeField] protected WeaponData weaponData;
+    public WeaponData weaponData;
     [SerializeField] protected Transform firePoint;
 
-    public float CurCooldown { get; private set; }
-    public int CurAmmo { get; private set; }
+    public float CurrentCooldown { get; private set; }
+    public int CurrentAmmo { get; private set; }
+
+    private void Awake()
+    {
+        //InstantiateWeaponBehavior();
+    }
 
     protected virtual void Start()
     {
+        print(weaponData);
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {
@@ -24,18 +30,18 @@ public abstract class Weapon : MonoBehaviour
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
-        CurAmmo = weaponData.ammo;
+        CurrentAmmo = weaponData.ammo;
     }
 
     protected virtual void Update()
     {
-        if(gameObject.activeInHierarchy && CurCooldown > 0)
+        if(gameObject.activeInHierarchy && CurrentCooldown > 0)
         {
-            CurCooldown -= Time.deltaTime;
+            CurrentCooldown -= Time.deltaTime;
         }
         else
         {
-            CurCooldown = 0;
+            CurrentCooldown = 0;
         }
     }
 
@@ -46,10 +52,10 @@ public abstract class Weapon : MonoBehaviour
 
     public virtual void Fire()
     {
-        if (CurCooldown <= 0 && CurAmmo > 0)
+        if (CurrentCooldown <= 0 && CurrentAmmo > 0)
         {
-            CurAmmo--;
-            CurCooldown = 1f / weaponData.fireRate;
+            CurrentAmmo--;
+            CurrentCooldown = 1f / weaponData.fireRate;
             GetFromPool(firePoint.position, firePoint.rotation);
         }
     }
@@ -82,9 +88,15 @@ public abstract class Weapon : MonoBehaviour
 
     public void Reload()
     {
-        CurCooldown = 1f / weaponData.fireRate;
-        CurAmmo = weaponData.ammo;
+        CurrentCooldown = weaponData.reloadDuration;
+        CurrentAmmo = weaponData.ammo;
     }
 
     public WeaponData GetWeaponData() { return weaponData; }
+
+    public void InstantiateWeaponBehavior()
+    {
+        weaponData = Instantiate(weaponData);
+        weaponData.weaponBehavior = Instantiate(weaponData.weaponBehavior);
+    }
 }

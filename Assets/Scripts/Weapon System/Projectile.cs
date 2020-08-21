@@ -28,27 +28,30 @@ public class Projectile : MonoBehaviour, IPoolObject
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        for (int i = 0; i < collision.contactCount; i++)
+        if (other.transform.TryGetComponent(out IDamageable damageable))
         {
-            ContactPoint2D contact = collision.GetContact(i);
-            Instantiate(Resources.Load<GameObject>("LaserHitParticle"), contact.point, transform.rotation);
-        }
-
-        if (collision.transform.TryGetComponent(out IDamageable damageable))
-        {
-            if(collision.transform.TryGetComponent(out Character character))
+            if(other.transform.TryGetComponent(out Character character))
             {
+                print(character);
+                print(character.teamData);
+                if (character.teamData.teamName == null)
+                {
+                    print("No team name! Proj Name: " + gameObject.name);
+                }
+                print(character.teamData.teamName);
+                print(teamData);
                 if (character.teamData.teamName == teamData.teamName) 
                 {
-                    gameObject.SetActive(false);
+                    // gameObject.SetActive(false);
                     return;
                 };
+                GameObject hitParticle = Instantiate(Resources.Load<GameObject>("LaserHitParticle"), transform.position, Quaternion.identity);
             }
             damageable.TakeDamage(damage);
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
 
     public void OnSpawnObject(params object[] args)
