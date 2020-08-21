@@ -236,8 +236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6530964946961707482}
   - component: {fileID: 6530964946961707480}
-  - component: {fileID: 6530964946961707487}
   - component: {fileID: 3663454832036120296}
+  - component: {fileID: 6245511603443733402}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -287,26 +287,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.41371346}
   m_EdgeRadius: 0
---- !u!114 &6530964946961707487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6530964946961707486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac028cca2d804a4eb20305e786228ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  characterGraphics: {fileID: 6530964945947233784}
-  arm: {fileID: 6530964946658156032}
-  armGraphics: {fileID: 6530964945864740930}
-  weaponPoint: {fileID: 6530964945819117738}
-  anim: {fileID: 3663454832036120296}
-  teamData: {fileID: 0}
-  invert: 0
 --- !u!95 &3663454832036120296
 Animator:
   serializedVersion: 3
@@ -326,3 +306,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6245511603443733402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6530964946961707486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6dd4262df66e5f46a61a536b9993f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  characterGraphics: {fileID: 6530964945947233784}
+  arm: {fileID: 6530964946658156032}
+  armGraphics: {fileID: 6530964945864740930}
+  weaponPoint: {fileID: 6530964945819117738}
+  anim: {fileID: 3663454832036120296}
+  teamData: {fileID: 11400000, guid: e3f1ee64b2eb53d4c97d386cd8699f3c, type: 2}
+  invert: 0
+  movementSpeed: 3
+  target: {fileID: 0}
+  captureTarget: {fileID: 0}
+  rootNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
+  behaviorTree: {fileID: 0}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c44b25fedc261f946b109b24df0ae210, type: 3}
-  m_Name: New State Action Get Nearest Capture Point
+  m_Name: Get Nearest Capture Point
   m_EditorClassIdentifier: 
   nonPlayerCharacter: {fileID: 0}
   parentNode: {fileID: 0}

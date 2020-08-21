@@ -16,7 +16,7 @@ MonoBehaviour:
   teamColor: {r: 0, g: 0, b: 1, a: 1}
   presetTeam:
   - {fileID: 5027507751142609811, guid: 64a9253233f9ba74da93508c154cb658, type: 3}
-  - {fileID: 948914545422461824, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
-  - {fileID: 948914545422461824, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
-  - {fileID: 948914545422461824, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
-  - {fileID: 948914545422461824, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
+  - {fileID: 6161344769587187155, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
+  - {fileID: 6161344769587187155, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
+  - {fileID: 6161344769587187155, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}
+  - {fileID: 6161344769587187155, guid: da1bfc37fd6c0e44bbbe41728e0d9f3e, type: 3}

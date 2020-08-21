@@ -133,6 +133,10 @@ public class TeamManager : MonoBehaviour
         character.transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         character.transform.rotation = point.rotation;
 
+        Weapon[] weapons = Resources.LoadAll<Weapon>("Weapons");
+        Weapon weapon = Instantiate(weapons[Random.Range(0, weapons.Length)]);
+        character.EquipWeapon(weapon);
+
         character.gameObject.SetActive(true);
     }
 
@@ -142,6 +146,10 @@ public class TeamManager : MonoBehaviour
         Transform point = teams[teamIndex].teamSpawnpoints[spawnpointIndex].transform;
         teams[teamIndex].characterList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         teams[teamIndex].characterList[characterIndex].transform.rotation = point.rotation;
+
+        Weapon[] weapons = Resources.LoadAll<Weapon>("Weapons");
+        Weapon weapon = Instantiate(weapons[Random.Range(0, weapons.Length)]);
+        teams[teamIndex].characterList[characterIndex].EquipWeapon(weapon);
 
         teams[teamIndex].characterList[characterIndex].gameObject.SetActive(true);
     }

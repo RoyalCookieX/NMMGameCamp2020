@@ -50,8 +50,8 @@ public class Player : Character
             {
                 if (col.transform.TryGetComponent(out Weapon weapon))
                 {
-                    if (weapon) DropWeapon();
-                    EquipWeapon(weapon);
+                    if (this.weapon) DropWeapon();
+                    if(weapon.teamData == null) EquipWeapon(weapon);
                 }
             }
         }

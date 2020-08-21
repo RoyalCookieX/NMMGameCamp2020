@@ -23,7 +23,7 @@ public class Capturepoint : Spawnpoint
         var main = particles.main;
         main.startColor = teamData != null ? teamData.teamColor : Color.white;
         trackingArrow = Instantiate(trackingArrow, transform.position, transform.rotation);
-        trackingArrow.SetColor(teamData.teamColor);
+        trackingArrow.SetColor(teamData != null ? teamData.teamColor : Color.white);
         trackingArrow.target = transform;
     }
 
