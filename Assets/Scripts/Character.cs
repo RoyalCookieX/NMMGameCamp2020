@@ -1,81 +1,110 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class Character : MonoBehaviour, IDamageable
+public abstract class Character : MonoBehaviour, IDamageable
 {
-    [Header("Components")]
-    [SerializeField] Weapon weapon;
-    [SerializeField] Transform characterGraphics;
-    [SerializeField] Transform arm;
-    [SerializeField] Transform weaponPoint;
-    [SerializeField] Camera cam; //Temporary
+    public event Action<Character> OnDeathEvent;
+
+    [Header("Character Components")]
+    public Weapon weapon = null;
+    public Weapon Weapon { get { return weapon; } }
+    [SerializeField] protected Transform characterGraphics = null;
+    [SerializeField] protected Transform arm = null;
+    [SerializeField] protected Transform armGraphics = null;
+    [SerializeField] protected Transform weaponPoint = null;
+    public Animator anim;
+    //[SerializeField] public Team CharTeam { get; set; }
+    [SerializeField] public TeamData teamData;
 
     [Space]
-    [Header("Properties")]
+    [Header("Characrter Properties")]
     private float health = 100;
     public float Health { get { return health; } }
     public bool invert;
+    public bool IsSpawning { get; private set; } = false;
+    public float SpawnCooldown { get; private set; } = 0;
+
+    protected virtual void OnEnable()
+    {
+        if(weapon)weapon.InstantiateWeaponBehavior();
+        IsSpawning = false;
+        health = 100;
+    }
 
     private void Update()
     {
-        Vector2 screenCenter = new Vector2(Screen.width / 2, Screen.height / 2);
-        float angle = Vector2.SignedAngle(Vector2.right, (Vector2)Input.mousePosition - screenCenter);
-        SetArmAngle(angle);
-
-        if(weapon)
-        {
-            if (Input.GetButtonDown("Fire1") && weapon.GetData().type == WeaponType.SEMIAUTO) weapon.Fire();
-            else if (Input.GetButton("Fire1") && weapon.GetData().type == WeaponType.AUTO) weapon.Fire();
-            if (Input.GetButtonDown("Fire2")) weapon.Reload();
-            if (Input.GetKeyDown(KeyCode.Space)) DropWeapon();
-        }
+        if (SpawnCooldown > 0) SpawnCooldown -= Time.deltaTime;
+        else SpawnCooldown = 0;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.transform.TryGetComponent(out Weapon weapon))
-        {
-            EquipWeapon(weapon);
-        }
-    }
-
-    protected virtual void SetArmAngle(float angle)
+    public virtual void SetArmAngle(float angle)
     {
         arm.localEulerAngles = Vector3.forward * angle;
+        arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
         characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
-        weaponPoint.transform.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
+    }
+
+    public virtual void SetArmAngle(Vector2 targetPos)
+    {
+        float angle = Vector2.SignedAngle(Vector2.right, targetPos - (Vector2)transform.position);
+        arm.localEulerAngles = Vector3.forward * angle;
+        arm.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        arm.localScale = new Vector3(1, Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1);
+        characterGraphics.transform.localScale = new Vector3(Mathf.Abs(angle) < 90 ? !invert ? 1 : -1 : invert ? 1 : -1, 1, 1);
     }
 
     public virtual void TakeDamage(float damage)
     {
+        if (Health <= 0) return;
         health -= damage;
+        HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + UnityEngine.Random.insideUnitSphere * .7f, Quaternion.identity);
+        hitParticle.SetText(damage);
+        hitParticle.SetColor(Color.red);
+        if (health <= 0) Die();
+    }
+
+    public virtual void Die()
+    {
+        DropWeapon();
+        gameObject.SetActive(false);
+        IsSpawning = true;
+        SpawnCooldown = 3;
+        OnDeathEvent?.Invoke(this);
     }
 
     public virtual void EquipWeapon(Weapon weapon)
     {
+        if (this.weapon) return;
         this.weapon = weapon;
-
-        if(weapon.GetType() == typeof(TestGun))
-        {
-            print("this is a test gun");
-        }
+        weapon.teamData = teamData;
 
         if(weapon.transform.TryGetComponent(out Rigidbody2D rb))
         {
+            rb.velocity = Vector2.zero;
             rb.isKinematic = true;
+        }
+        if(weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = false;
         }
 
         weapon.transform.parent = weaponPoint;
         weapon.transform.localPosition = Vector3.zero;
         weapon.transform.localRotation = Quaternion.identity;
         weapon.transform.localScale = Vector3.one;
+        weapon.decayTimer = 5f;
     }
 
     public virtual void DropWeapon()
     {
+        if (!weapon) return;
+
         weapon.transform.parent = null;
-        weapon.transform.position = transform.position - Vector3.up;
+        weapon.transform.position = transform.position;// - Vector3.up;
         weapon.transform.rotation = Quaternion.identity;
         weapon.transform.localScale = Vector3.one;
 
@@ -83,7 +112,17 @@ public class Character : MonoBehaviour, IDamageable
         {
             rb.isKinematic = false;
         }
+        if (weapon.transform.TryGetComponent(out Collider2D col))
+        {
+            col.enabled = true;
+        }
 
+        weapon.teamData = null;
         weapon = null;
+    }
+
+    public Team GetTeam()
+    {
+        return TeamManager.Instance.GetTeam(teamData);
     }
 }
