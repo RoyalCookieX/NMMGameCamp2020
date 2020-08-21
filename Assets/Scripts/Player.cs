@@ -22,10 +22,14 @@ public class Player : Character
     float smoothSpeed;
     [SerializeField] protected LayerMask weaponMask;
 
+    private void Awake()
+    {
+        PlayerGUI.CurrentPlayer = this; 
+    }
+
     private void Start()
     {
         cam = GameCamera.Instance.Cam;
-        PlayerGUI.CurrentPlayer = this;
     }
 
     void Update()

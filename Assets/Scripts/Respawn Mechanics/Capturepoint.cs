@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Capturepoint : Spawnpoint
 {
-    public delegate void OnCapture(TeamData teamName, Capturepoint capturepoint);
+    public delegate void OnCapture(TeamData teamData, Capturepoint capturepoint);
     public event OnCapture onCaptureEvent;
 
     [Header("Capturepoint Components")]
     [SerializeField] ParticleSystem particles;
     public Dictionary<TeamData, float> teamProgress;
+    public TrackingArrow trackingArrow;
 
     [Space]
     [Header("Capturepoint Properties")]
@@ -22,6 +23,9 @@ public class Capturepoint : Spawnpoint
         teamProgress = new Dictionary<TeamData, float>();
         var main = particles.main;
         main.startColor = teamData != null ? teamData.teamColor : Color.white;
+        trackingArrow = Instantiate(trackingArrow, transform.position, transform.rotation);
+        trackingArrow.SetColor(teamData.teamColor);
+        trackingArrow.target = transform;
     }
 
     public void AddProgress(TeamData teamData, float progressToAdd = 0.01f)
@@ -40,6 +44,7 @@ public class Capturepoint : Spawnpoint
         var main = particles.main;
         main.startColor = teamData.teamColor;
         teamProgress = new Dictionary<TeamData, float>();
+        trackingArrow.SetColor(teamData.teamColor);
     }
 
     Vector2 PointInsideCircle()

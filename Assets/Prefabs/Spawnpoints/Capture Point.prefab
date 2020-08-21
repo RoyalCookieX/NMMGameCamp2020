@@ -4778,5 +4778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamData: {fileID: 0}
   particles: {fileID: 4073997835253912783}
+  trackingArrow: {fileID: 687461169280495502, guid: 6eac81202816d6744b7343932a14d18b,
+    type: 3}
   maxProgress: 2.5
   radius: 1.5
