@@ -15,8 +15,8 @@ MonoBehaviour:
   teamName: Red
   teamColor: {r: 1, g: 0, b: 0, a: 1}
   presetTeam:
-  - {fileID: 6530964946961707487, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
-  - {fileID: 6530964946961707487, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
-  - {fileID: 6530964946961707487, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
-  - {fileID: 6530964946961707487, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
-  - {fileID: 6530964946961707487, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
+  - {fileID: 6245511603443733402, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
+  - {fileID: 6245511603443733402, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
+  - {fileID: 6245511603443733402, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
+  - {fileID: 6245511603443733402, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}
+  - {fileID: 6245511603443733402, guid: 998c511a75de3bb4494a6c68a4d061a0, type: 3}

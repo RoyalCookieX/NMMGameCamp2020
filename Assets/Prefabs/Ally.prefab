@@ -236,8 +236,8 @@ GameObject:
   m_Component:
   - component: {fileID: 948914545422461829}
   - component: {fileID: 948914545422461831}
-  - component: {fileID: 948914545422461824}
   - component: {fileID: 7304462591072853175}
+  - component: {fileID: 6161344769587187155}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Untagged
@@ -287,26 +287,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.44, y: 0.31}
   m_EdgeRadius: 0
---- !u!114 &948914545422461824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948914545422461825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ac028cca2d804a4eb20305e786228ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  characterGraphics: {fileID: 948914544338786215}
-  arm: {fileID: 948914544248554591}
-  armGraphics: {fileID: 948914544531376669}
-  weaponPoint: {fileID: 948914544550802165}
-  anim: {fileID: 7304462591072853175}
-  teamData: {fileID: 0}
-  invert: 0
 --- !u!95 &7304462591072853175
 Animator:
   serializedVersion: 3
@@ -326,3 +306,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6161344769587187155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948914545422461825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6dd4262df66e5f46a61a536b9993f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
+  characterGraphics: {fileID: 948914544338786215}
+  arm: {fileID: 948914544248554591}
+  armGraphics: {fileID: 948914544531376669}
+  weaponPoint: {fileID: 948914544550802165}
+  anim: {fileID: 7304462591072853175}
+  teamData: {fileID: 0}
+  invert: 0
+  movementSpeed: 3
+  target: {fileID: 0}
+  captureTarget: {fileID: 0}
+  rootNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
+  behaviorTree: {fileID: 0}

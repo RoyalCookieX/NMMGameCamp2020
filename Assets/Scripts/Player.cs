@@ -22,10 +22,14 @@ public class Player : Character
     float smoothSpeed;
     [SerializeField] protected LayerMask weaponMask;
 
+    private void Awake()
+    {
+        PlayerGUI.CurrentPlayer = this; 
+    }
+
     private void Start()
     {
         cam = GameCamera.Instance.Cam;
-        PlayerGUI.CurrentPlayer = this;
     }
 
     void Update()
@@ -46,8 +50,8 @@ public class Player : Character
             {
                 if (col.transform.TryGetComponent(out Weapon weapon))
                 {
-                    if (weapon) DropWeapon();
-                    EquipWeapon(weapon);
+                    if (this.weapon) DropWeapon();
+                    if(weapon.teamData == null) EquipWeapon(weapon);
                 }
             }
         }
