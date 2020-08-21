@@ -19,6 +19,6 @@ MonoBehaviour:
   maxAttackRange: 4
   fireRate: 8
   reloadDuration: 2
-  ammo: 24
+  ammo: 36
   projectile: {fileID: 1891363844243158420, guid: ccac7ae17b195654d8fb9d87715ba798,
     type: 3}

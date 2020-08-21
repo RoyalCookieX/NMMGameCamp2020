@@ -15,10 +15,10 @@ MonoBehaviour:
   type: 1
   weaponBehavior: {fileID: 11400000, guid: 6c4f15507dd4ec942ba327f4eee8735a, type: 2}
   weaponName: Longrange
-  minAttackRange: 1
+  minAttackRange: 2.5
   maxAttackRange: 5
   fireRate: 1
-  reloadDuration: 0
-  ammo: 7
+  reloadDuration: 3
+  ammo: 12
   projectile: {fileID: 1891363844243158420, guid: 98f22cf2bc962244d965b5992e4d31f6,
     type: 3}
