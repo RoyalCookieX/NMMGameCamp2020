@@ -86,7 +86,7 @@ public class TeamManager : MonoBehaviour
             //spawn each character
             for(int characterIndex = 0; characterIndex < team.characterList.Count; characterIndex++)
             {
-                SpawnCharacter(teamIndex, characterIndex, 0);
+                SpawnCharacter(teamIndex, characterIndex, Random.Range(0, team.teamSpawnpoints.Count));
             }
         }
     }
@@ -120,15 +120,21 @@ public class TeamManager : MonoBehaviour
     {
         IEnumerator SpawnEnumerator()
         {
-            yield return new WaitForSecondsRealtime(respawnTime);
-            SpawnCharacter(character, Random.Range(0, character.GetTeam().teamSpawnpoints.Count));
+            bool didSpawn = false;
+
+            while(!didSpawn)
+            {
+                yield return new WaitForSecondsRealtime(respawnTime);
+                didSpawn = SpawnCharacter(character, Random.Range(0, character.GetTeam().teamSpawnpoints.Count));
+            }
         }
+
         StartCoroutine(SpawnEnumerator());
     }
 
-    public void SpawnCharacter(Character character, int spawnpointIndex)
+    public bool SpawnCharacter(Character character, int spawnpointIndex)
     {
-        if (character.GetTeam().teamSpawnpoints.Count == 0) return;
+        if (character.GetTeam().teamSpawnpoints.Count == 0) return false;
         Transform point = character.GetTeam().teamSpawnpoints[spawnpointIndex].transform;
         character.transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         character.transform.rotation = point.rotation;
@@ -138,11 +144,12 @@ public class TeamManager : MonoBehaviour
         character.EquipWeapon(weapon);
 
         character.gameObject.SetActive(true);
+        return true;
     }
 
-    public void SpawnCharacter(int teamIndex, int characterIndex, int spawnpointIndex)
+    public bool SpawnCharacter(int teamIndex, int characterIndex, int spawnpointIndex)
     {
-        if (teams[teamIndex].teamSpawnpoints.Count == 0) return;
+        if (teams[teamIndex].teamSpawnpoints.Count == 0) return false;
         Transform point = teams[teamIndex].teamSpawnpoints[spawnpointIndex].transform;
         teams[teamIndex].characterList[characterIndex].transform.position = (Vector2)point.position + Random.insideUnitCircle * radius;
         teams[teamIndex].characterList[characterIndex].transform.rotation = point.rotation;
@@ -152,6 +159,7 @@ public class TeamManager : MonoBehaviour
         teams[teamIndex].characterList[characterIndex].EquipWeapon(weapon);
 
         teams[teamIndex].characterList[characterIndex].gameObject.SetActive(true);
+        return true;
     }
 
     IEnumerator Countdown(TeamData teamData)

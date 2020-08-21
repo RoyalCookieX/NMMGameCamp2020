@@ -133,7 +133,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 10
+  m_Priority: 15
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 5027507751142609814}
@@ -235,9 +235,6 @@ MonoBehaviour:
   anim: {fileID: 3292370400226141348}
   teamData: {fileID: 0}
   invert: 0
-  audioSource: {fileID: 6234496751231907273}
-  clips:
-  - {fileID: 8300000, guid: 71e1e6c73a88ca24e8997434fd438803, type: 3}
   healthRect:
     serializedVersion: 2
     x: 10
@@ -290,6 +287,9 @@ MonoBehaviour:
   weaponMask:
     serializedVersion: 2
     m_Bits: 256
+  audioSettings:
+    priority: 0
+    volume: 1
 --- !u!95 &3292370400226141348
 Animator:
   serializedVersion: 3

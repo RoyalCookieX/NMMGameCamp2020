@@ -17,6 +17,9 @@ public abstract class Weapon : MonoBehaviour
     public float CurrentCooldown { get; private set; }
     public int CurrentAmmo { get; private set; }
 
+    [Space]
+    [SerializeField] AudioObjectSettings audioSettings;
+
     private void Awake()
     {
         decayTimer = 5f;
@@ -62,10 +65,9 @@ public abstract class Weapon : MonoBehaviour
         {
             CurrentAmmo--;
             CurrentCooldown = 1f / weaponData.fireRate;
-            GameObject proj = GetFromPool(firePoint.position, firePoint.rotation);
-            proj.transform.Rotate(new Vector3(0, 0, 45 * inaccuracy));
+            GetFromPool(firePoint.position, firePoint.rotation * Quaternion.Euler(0, 0, (Random.value * 2 - 1) * inaccuracy));
 
-            AudioManager.Instance.PlayRandom("impact", transform.position, transform.rotation);
+            AudioManager.Instance.PlayRandom("laser", audioSettings, transform.position, transform.rotation);
         }
     }
 

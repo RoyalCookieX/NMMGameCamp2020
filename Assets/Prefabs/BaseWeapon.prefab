@@ -101,6 +101,11 @@ MonoBehaviour:
   teamData: {fileID: 0}
   weaponData: {fileID: 0}
   firePoint: {fileID: 4154086748857814713}
+  decayTimer: 0
+  inaccuracy: 0
+  audioSettings:
+    priority: 200
+    volume: 0.5
 --- !u!70 &1857470552705690970
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

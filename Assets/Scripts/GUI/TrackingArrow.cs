@@ -22,8 +22,8 @@ public class TrackingArrow : MonoBehaviour
     {
         Vector2 targetPosition;
 
-        arrow.enabled = Input.GetKey(KeyCode.T);
-        tracker.enabled = Input.GetKey(KeyCode.T);
+        arrow.enabled = Input.GetKey(KeyCode.T) || !PlayerGUI.CurrentPlayer.gameObject.activeInHierarchy;
+        tracker.enabled = Input.GetKey(KeyCode.T) || !PlayerGUI.CurrentPlayer.gameObject.activeInHierarchy;
 
         if (IsOnScreen(target.position))
         {

@@ -10,8 +10,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] GameObject audioObjectPrefab;
     [SerializeField] protected Queue<GameObject> pool;
     public Queue<GameObject> Pool { get { return pool; } }
-    public int Size { get; set; } = 100;
-    public int threshold = 30;
+    public int poolSize = 100;
 
 
     private void Awake()
@@ -29,7 +28,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         pool = new Queue<GameObject>();
-        for(int i = 0; i < Size; i++)
+        for(int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(audioObjectPrefab, transform);
             obj.SetActive(false);
@@ -43,32 +42,36 @@ public class AudioManager : MonoBehaviour
         DestroyPool();
     }
 
-    void PlaySound(AudioClip clip, Vector3 position, Quaternion rotation)
+    void PlaySound(AudioClip clip, AudioObjectSettings settings, Vector3 position, Quaternion rotation)
     {
-        if (pool.Count(sound => sound.activeInHierarchy) >= threshold) return;
         GameObject obj = pool.Dequeue();
 
-        obj.SetActive(true);
+        obj.gameObject.SetActive(true);
         obj.transform.position = position;
         obj.transform.rotation = rotation;
 
         if (obj.TryGetComponent(out IPoolObject poolObject))
         {
-            poolObject.OnSpawnObject(clip);
+            poolObject.OnSpawnObject(clip, settings);
         }
 
         pool.Enqueue(obj);
     }
 
-    public void PlaySound(string clipName, Vector3 position, Quaternion rotation)
+    public void PlaySound(string clipName, AudioObjectSettings settings, Vector3 position, Quaternion rotation)
     {
-        PlaySound(Resources.Load<AudioClip>($"Audio/{clipName}"), position, rotation);
+        PlaySound(Resources.Load<AudioClip>($"Audio/{clipName}"), settings, position, rotation);
     }
 
-    public void PlayRandom(string folderName, Vector3 position, Quaternion rotation)
+    public void PlayRandom(string folderName, AudioObjectSettings settings, Vector3 position, Quaternion rotation)
     {
         AudioClip[] clips = Resources.LoadAll<AudioClip>($"Audio/{folderName}");
-        PlaySound(clips[Random.Range(0, clips.Length)], position, rotation);
+        PlaySound(clips[Random.Range(0, clips.Length)], settings, position, rotation);
+    }
+
+    public void ResetSounds()
+    {
+        foreach (GameObject obj in pool) obj.SetActive(false);
     }
 
     public void DestroyPool()
@@ -78,5 +81,10 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(pool.Dequeue());
         }
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(20, Screen.height - 20, 300, 300), $"{pool.Count(o => o.activeInHierarchy)} / {poolSize}");
     }
 }

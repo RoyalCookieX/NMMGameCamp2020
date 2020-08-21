@@ -22,6 +22,9 @@ public class Player : Character
     float smoothSpeed;
     [SerializeField] protected LayerMask weaponMask;
 
+    [Space]
+    [SerializeField] AudioObjectSettings audioSettings;
+
     private void Awake()
     {
         PlayerGUI.CurrentPlayer = this; 
@@ -88,7 +91,8 @@ public class Player : Character
 
     public override void Die()
     {
-        AudioManager.Instance.PlaySound("meow-death", transform.position, Quaternion.identity);
+        AudioManager.Instance.ResetSounds();
+        AudioManager.Instance.PlaySound("meow-death", audioSettings, transform.position, Quaternion.identity);
         IEnumerator DieEnumerator()
         {
             anim.SetTrigger("die");
@@ -97,11 +101,5 @@ public class Player : Character
         }
         StopAllCoroutines();
         StartCoroutine(DieEnumerator());
-    }
-
-    [ContextMenu("Test")]
-    void Test()
-    {
-        TakeDamage(100);
     }
 }

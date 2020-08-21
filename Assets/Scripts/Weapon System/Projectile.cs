@@ -14,6 +14,10 @@ public class Projectile : MonoBehaviour, IPoolObject
     [SerializeField] float maxLifetime = 1;
     [SerializeField] float speed = 10;
     [SerializeField] int penetration;
+
+    [Space]
+    [SerializeField] AudioObjectSettings audioSettings;
+
     float curLifetime = 1;
     TeamData teamData;
 
@@ -35,20 +39,12 @@ public class Projectile : MonoBehaviour, IPoolObject
         {
             if(other.transform.TryGetComponent(out Character character))
             {
-                print(character);
-                print(character.teamData);
-                if (character.teamData.teamName == null)
-                {
-                    print("No team name! Proj Name: " + gameObject.name);
-                }
-                print(character.teamData.teamName);
-                print(teamData);
                 if (character.teamData.teamName == teamData.teamName) 
                 {
                     // gameObject.SetActive(false);
                     return;
                 };
-                GameObject hitParticle = Instantiate(Resources.Load<GameObject>("LaserHitParticle"), transform.position, Quaternion.identity);
+                Instantiate(Resources.Load<GameObject>("LaserHitParticle"), transform.position, Quaternion.identity);
             }
             damageable.TakeDamage(damage);
             if (penetration == 0)
@@ -61,7 +57,7 @@ public class Projectile : MonoBehaviour, IPoolObject
             }
         }
 
-        AudioManager.Instance.PlayRandom("laser", transform.position, transform.rotation);
+        AudioManager.Instance.PlayRandom("impact", audioSettings, transform.position, transform.rotation);
     }
 
     public void OnSpawnObject(params object[] args)

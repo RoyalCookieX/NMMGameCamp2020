@@ -276,3 +276,7 @@ MonoBehaviour:
   damage: 5
   maxLifetime: 1
   speed: 10
+  penetration: 0
+  audioSettings:
+    priority: 110
+    volume: 0.4
