@@ -8,14 +8,14 @@ public struct Team
     public TeamData teamData;
     public List<Character> characterList;
     public List<Spawnpoint> teamSpawnpoints;
-    public List<Capturepoint> uncapturedpoints;
+    public List<Capturepoint> uncapturedPoints;
 
     public Team(TeamData teamData)
     {
         this.teamData = teamData;
         characterList = new List<Character>();
         teamSpawnpoints = new List<Spawnpoint>();
-        uncapturedpoints = new List<Capturepoint>();
+        uncapturedPoints = new List<Capturepoint>();
 
     }
 }

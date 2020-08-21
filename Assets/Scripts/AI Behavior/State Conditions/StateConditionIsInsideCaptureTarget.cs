@@ -9,7 +9,7 @@ public class StateConditionIsInsideCaptureTarget : StateCondition
     {
         float distance = Vector2.Distance(nonPlayerCharacter.transform.position, nonPlayerCharacter.captureTarget.transform.position);
         float captureTargetRadius = nonPlayerCharacter.captureTarget.GetComponent<CircleCollider2D>().radius;
-        if (distance < captureTargetRadius - 1f)
+        if (distance < captureTargetRadius - 0.5f)
         {
             return true;
         }

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Capturer_1_Selector_HasTarget
   m_EditorClassIdentifier: 
   nonPlayerCharacter: {fileID: 0}
-  parentNode: {fileID: 0}
+  parentNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
   conditions:
   - {fileID: 11400000, guid: 323f7a4d0c379d242acedc0d9dce6195, type: 2}
   nodes:
   - {fileID: 11400000, guid: 6cb8e96f7e60154418a3fc59ccce42ce, type: 2}
-  currentNode: {fileID: 0}
+  currentNode: {fileID: 11400000, guid: 6cb8e96f7e60154418a3fc59ccce42ce, type: 2}

@@ -25,13 +25,11 @@ public abstract class WeaponBehavior : ScriptableObject
         if (distance < weapon.weaponData.minAttackRange)
         {
             nonPlayerCharacter.transform.Translate(-dir.normalized * nonPlayerCharacter.movementSpeed*Time.deltaTime);
-            Debug.Log("translating");
             return false;
         }
         if (distance > weapon.weaponData.maxAttackRange)
         {
             nonPlayerCharacter.transform.Translate(dir.normalized * nonPlayerCharacter.movementSpeed*Time.deltaTime);
-            Debug.Log("translating");
             return false;
         }
         return true;

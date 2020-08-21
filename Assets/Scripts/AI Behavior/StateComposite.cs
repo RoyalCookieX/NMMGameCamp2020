@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public abstract class StateComposite : StateNode
@@ -41,6 +42,16 @@ public abstract class StateComposite : StateNode
 
     public override void Tick()
     {
+        foreach(StateNode node in nodes)
+        {
+            if (node is StateComposite composite)
+            {
+                foreach(StateNode node2 in composite.nodes)
+                {
+                    Debug.Log("NODE2 : " + node2.GetType());
+                }
+            }
+        }
         if (!CheckConditions())
         {
             parentNode.Fail(this);
@@ -70,7 +81,6 @@ public abstract class StateComposite : StateNode
     private bool CheckConditions()
     {
         if(conditions.Count == 0) return true;
-        Debug.Log(conditions);
         foreach (StateCondition condition in conditions)
         {
             if (condition.CheckCondition() == false)
@@ -83,8 +93,22 @@ public abstract class StateComposite : StateNode
 
     public virtual void ResetNode()
     {
-        Debug.Log("Reset Running");
         currentNode.OnExit();
         currentNode = null;
+    }
+
+    public void InstantiateSubNodes()
+    {
+        List<StateNode> newNodes = new List<StateNode>();
+        foreach(StateNode node in nodes)
+        {
+            StateNode newNode = Instantiate(node);
+            if(newNode is StateComposite composite)
+            {
+                composite.InstantiateSubNodes();
+            }
+            newNodes.Add(newNode);
+        }
+        nodes = newNodes;
     }
 }

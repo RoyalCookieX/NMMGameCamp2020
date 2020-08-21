@@ -10,5 +10,6 @@ public class StateActionOccupyCapturePoint : StateAction
     public override void Tick(){
         //if capturetarget progress isnt 100, keep staying and defending
         //is progress is 100, return success
+        //if()
     }
 }

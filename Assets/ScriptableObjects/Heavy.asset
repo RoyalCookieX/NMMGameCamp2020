@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Heavy
   m_EditorClassIdentifier: 
   type: 0
+  weaponBehavior: {fileID: 11400000, guid: 6c4f15507dd4ec942ba327f4eee8735a, type: 2}
   weaponName: Heavy
+  minAttackRange: 1
+  maxAttackRange: 5
   fireRate: 0.75
+  reloadDuration: 0
   ammo: 8
   projectile: {fileID: 1891363844243158420, guid: de8ffd69e04c3a44193857726ed56ac4,
     type: 3}

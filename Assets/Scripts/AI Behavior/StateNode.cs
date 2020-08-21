@@ -24,4 +24,6 @@ public abstract class StateNode : ScriptableObject
     {
 
     }
+
+    //public abstract void InstantiateSubNodes();
 }

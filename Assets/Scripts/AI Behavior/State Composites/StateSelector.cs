@@ -7,7 +7,6 @@ public class StateSelector : StateComposite
 {
     public override void Success(StateNode finishedNode)
     {
-        //Reset();
         parentNode.Success(this);
     }
 

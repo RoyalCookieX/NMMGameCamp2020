@@ -15,8 +15,14 @@ public abstract class Weapon : MonoBehaviour
     public float CurrentCooldown { get; private set; }
     public int CurrentAmmo { get; private set; }
 
+    private void Awake()
+    {
+        //InstantiateWeaponBehavior();
+    }
+
     protected virtual void Start()
     {
+        print(weaponData);
         pool = new Queue<GameObject>(Size);
         for(int i = 0; i < Size; i++)
         {
@@ -87,4 +93,10 @@ public abstract class Weapon : MonoBehaviour
     }
 
     public WeaponData GetWeaponData() { return weaponData; }
+
+    public void InstantiateWeaponBehavior()
+    {
+        weaponData = Instantiate(weaponData);
+        weaponData.weaponBehavior = Instantiate(weaponData.weaponBehavior);
+    }
 }

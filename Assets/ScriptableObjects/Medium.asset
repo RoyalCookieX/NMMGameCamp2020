@@ -15,8 +15,8 @@ MonoBehaviour:
   type: 0
   weaponBehavior: {fileID: 11400000, guid: 6c4f15507dd4ec942ba327f4eee8735a, type: 2}
   weaponName: Medium
-  minAttackRange: 1
-  maxAttackRange: 2.5
+  minAttackRange: 1.5
+  maxAttackRange: 4
   fireRate: 8
   reloadDuration: 2
   ammo: 24

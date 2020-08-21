@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d1b887de1c34944bb4d33a7dcb1129, type: 3}
-  m_Name: Capturer_0_Root Node
+  m_Script: {fileID: 11500000, guid: 847578fed0d613e4e9920d69de00a811, type: 3}
+  m_Name: Capturer_2_Selector_IsInsideCaptureTarget
   m_EditorClassIdentifier: 
   nonPlayerCharacter: {fileID: 0}
   parentNode: {fileID: 0}
-  conditions: []
+  conditions:
+  - {fileID: 11400000, guid: 06da81e79e55f8f40a9b353b958ea186, type: 2}
   nodes:
-  - {fileID: 11400000, guid: f4d3aa0fa0177844a9d5715d31acdb45, type: 2}
-  - {fileID: 11400000, guid: c7d1eaa1968d1714898dd428484beaed, type: 2}
   - {fileID: 11400000, guid: 0f3120eb3065f394d8aaae7f2f08e3f6, type: 2}
-  currentNode: {fileID: 11400000, guid: 0f3120eb3065f394d8aaae7f2f08e3f6, type: 2}
+  currentNode: {fileID: 0}
