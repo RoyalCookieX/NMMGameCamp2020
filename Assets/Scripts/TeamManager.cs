@@ -12,6 +12,9 @@ public class TeamManager : MonoBehaviour
 
     [SerializeField] float radius = 1;
     [SerializeField] float respawnTime = 1;
+    int totalCapturepoints;
+
+    Coroutine countdownCoroutine;
 
     private void Awake()
     {
@@ -65,6 +68,9 @@ public class TeamManager : MonoBehaviour
             List<Spawnpoint> allSpawnpoints = FindObjectsOfType<Spawnpoint>().ToList();
             List<Capturepoint> allCapturepoints = FindObjectsOfType<Capturepoint>().ToList();
 
+            //set totalCapturepoints
+            totalCapturepoints = allSpawnpoints.Count;
+
             //get all team's spawnpoints in the scene
             team.teamSpawnpoints = allSpawnpoints.FindAll(spawnpoint => spawnpoint.teamData == team.teamData);
             //get all uncapturedpoints for this team in the scene
@@ -87,17 +93,25 @@ public class TeamManager : MonoBehaviour
 
     private void OnPointCaptured(TeamData teamData, Capturepoint capturepoint)
     {
+        //set each team's capturepoints
         foreach(Team team in teams)
         {
             if(team.teamData == teamData)
             {
-                if(!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
+                if (countdownCoroutine != null) StopCoroutine(countdownCoroutine);
+                if (!team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Add(capturepoint);
                 if(team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Remove(capturepoint);
             }
             else
             {
                 if (!team.uncapturedpoints.Contains(capturepoint)) team.uncapturedpoints.Add(capturepoint);
                 if (team.teamSpawnpoints.Contains(capturepoint)) team.teamSpawnpoints.Remove(capturepoint);
+            }
+
+            //check victory condition
+            if(team.teamSpawnpoints.Count == totalCapturepoints)
+            {
+                countdownCoroutine = StartCoroutine(Countdown(team.teamData));
             }
         }
     }
@@ -130,5 +144,25 @@ public class TeamManager : MonoBehaviour
         teams[teamIndex].characterList[characterIndex].transform.rotation = point.rotation;
 
         teams[teamIndex].characterList[characterIndex].gameObject.SetActive(true);
+    }
+
+    IEnumerator Countdown(TeamData teamData)
+    {
+        for(float i = 5; i >= 0; i -= Time.deltaTime)
+        {
+            PlayerGUI.Instance.SetTitle($"{teamData.teamName}: {Mathf.Ceil(i)}", 0.5f);
+            yield return null;
+        }
+        PlayerGUI.Instance.SetTitle($"{teamData.teamName} Wins!", 3f);
+        foreach (Team team in teams)
+        {
+            if (team.teamData != teamData)
+            {
+                foreach (Character character in team.characterList)
+                {
+                    character.Die();
+                }
+            }
+        }
     }
 }

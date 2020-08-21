@@ -13,11 +13,24 @@ public class PlayerGUI : MonoBehaviour
     [SerializeField] Transform healthbar;
     [SerializeField] TMP_Text ammoText;
     [SerializeField] Transform reloadIcon;
+    [SerializeField] TMP_Text titleText;
 
     [Space]
     [Header("PlayerGUI Properties")]
     [SerializeField] float reloadIconSpeed = -120;
 
+    Coroutine titleCoroutine;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+
+        }
+        else Destroy(gameObject);
+
+    }
 
     private void Update()
     {
@@ -38,5 +51,23 @@ public class PlayerGUI : MonoBehaviour
             ammoText.text = "";
             reloadIcon.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance = this) Instance = null;
+    }
+
+    public void SetTitle(string text, float duration)
+    {
+        if (titleCoroutine != null) StopCoroutine(titleCoroutine);
+        titleCoroutine = StartCoroutine(TitleCoroutine(text, duration));
+    }
+
+    IEnumerator TitleCoroutine(string text, float duration)
+    {
+        titleText.text = text;
+        yield return new WaitForSecondsRealtime(duration);
+        titleText.text = "";
     }
 }
