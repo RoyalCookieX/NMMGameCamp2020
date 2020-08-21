@@ -153,7 +153,7 @@ MonoBehaviour:
   anim: {fileID: 36808201}
   teamData: {fileID: 11400000, guid: e3f1ee64b2eb53d4c97d386cd8699f3c, type: 2}
   invert: 0
-  movementSpeed: 5
+  movementSpeed: 3
   target: {fileID: 0}
   captureTarget: {fileID: 0}
   rootNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
@@ -184,7 +184,7 @@ MonoBehaviour:
   anim: {fileID: 67063887}
   teamData: {fileID: 11400000, guid: 0cbf3f42de157c448932feca16be2010, type: 2}
   invert: 0
-  movementSpeed: 5
+  movementSpeed: 3
   target: {fileID: 0}
   captureTarget: {fileID: 0}
   rootNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
@@ -481,7 +481,7 @@ MonoBehaviour:
   anim: {fileID: 446792053}
   teamData: {fileID: 11400000, guid: e3f1ee64b2eb53d4c97d386cd8699f3c, type: 2}
   invert: 0
-  movementSpeed: 5
+  movementSpeed: 3
   target: {fileID: 0}
   captureTarget: {fileID: 0}
   rootNode: {fileID: 11400000, guid: ca22fa7be2ae4e54a95c9b361178f972, type: 2}
@@ -492,27 +492,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 737133096}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &446792054
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446792051}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &449064920
 GameObject:
   m_ObjectHideFlags: 0
