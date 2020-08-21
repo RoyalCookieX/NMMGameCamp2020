@@ -194,6 +194,11 @@ PrefabInstance:
       propertyPath: radius
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -202,7 +207,7 @@ PrefabInstance:
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 1
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
@@ -564,6 +569,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0cbf3f42de157c448932feca16be2010,
         type: 2}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -572,7 +582,7 @@ PrefabInstance:
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 1
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
@@ -685,6 +695,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -694,6 +709,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b, type: 3}
@@ -923,6 +943,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -932,6 +957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b, type: 3}
@@ -1379,6 +1409,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e3f1ee64b2eb53d4c97d386cd8699f3c,
         type: 2}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -1387,7 +1422,7 @@ PrefabInstance:
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 1
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
@@ -1463,6 +1498,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -1472,6 +1512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: EmissionModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 1.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b, type: 3}
@@ -1567,8 +1612,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569433579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.906, y: 0.484, z: 0}
-  m_LocalScale: {x: 1.3279717, y: 1.3279717, z: 1.3279717}
+  m_LocalPosition: {x: 1.44, y: -0.71, z: 0}
+  m_LocalScale: {x: 2.8520107, y: 2.8520107, z: 2.8520107}
   m_Children: []
   m_Father: {fileID: 1631722967}
   m_RootOrder: 0
@@ -4535,6 +4580,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 0cbf3f42de157c448932feca16be2010,
         type: 2}
+    - target: {fileID: 4073997835253912777, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
+        type: 3}
+      propertyPath: maxProgress
+      value: 7.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912781, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: m_Name
@@ -4543,7 +4593,7 @@ PrefabInstance:
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
       propertyPath: ShapeModule.radius.value
-      value: 1
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4073997835253912783, guid: 7b4ff0cbe3799394b908b1b4cb32ad1b,
         type: 3}
