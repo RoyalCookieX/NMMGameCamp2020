@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] GameObject audioObjectPrefab;
     [SerializeField] protected Queue<GameObject> pool;
     public Queue<GameObject> Pool { get { return pool; } }
-    public int Size { get; set; } = 15;
+    public int Size { get; set; } = 100;
+    public int threshold = 30;
 
 
     private void Awake()
@@ -29,7 +31,7 @@ public class AudioManager : MonoBehaviour
         pool = new Queue<GameObject>();
         for(int i = 0; i < Size; i++)
         {
-            GameObject obj = Instantiate(audioObjectPrefab);
+            GameObject obj = Instantiate(audioObjectPrefab, transform);
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
@@ -43,6 +45,7 @@ public class AudioManager : MonoBehaviour
 
     void PlaySound(AudioClip clip, Vector3 position, Quaternion rotation)
     {
+        if (pool.Count(sound => sound.activeInHierarchy) >= threshold) return;
         GameObject obj = pool.Dequeue();
 
         obj.SetActive(true);
@@ -60,6 +63,12 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(string clipName, Vector3 position, Quaternion rotation)
     {
         PlaySound(Resources.Load<AudioClip>($"Audio/{clipName}"), position, rotation);
+    }
+
+    public void PlayRandom(string folderName, Vector3 position, Quaternion rotation)
+    {
+        AudioClip[] clips = Resources.LoadAll<AudioClip>($"Audio/{folderName}");
+        PlaySound(clips[Random.Range(0, clips.Length)], position, rotation);
     }
 
     public void DestroyPool()

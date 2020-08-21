@@ -60,6 +60,8 @@ public class Projectile : MonoBehaviour, IPoolObject
                 penetration -= 1;
             }
         }
+
+        AudioManager.Instance.PlayRandom("laser", transform.position, transform.rotation);
     }
 
     public void OnSpawnObject(params object[] args)
