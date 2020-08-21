@@ -64,6 +64,8 @@ public abstract class Weapon : MonoBehaviour
             CurrentCooldown = 1f / weaponData.fireRate;
             GameObject proj = GetFromPool(firePoint.position, firePoint.rotation);
             proj.transform.Rotate(new Vector3(0, 0, 45 * inaccuracy));
+
+            AudioManager.Instance.PlayRandom("impact", transform.position, transform.rotation);
         }
     }
 

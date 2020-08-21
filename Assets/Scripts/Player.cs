@@ -81,8 +81,9 @@ public class Player : Character
 
     public override void TakeDamage(float damage)
     {
-        anim.SetTrigger("damaged");
+        if (Health <= 0) return;
         base.TakeDamage(damage);
+        anim.SetTrigger("damaged");
     }
 
     public override void Die()

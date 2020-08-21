@@ -158,7 +158,7 @@ public class TeamManager : MonoBehaviour
     {
         for(float i = 5; i >= 0; i -= Time.deltaTime)
         {
-            PlayerGUI.Instance.SetTitle($"{teamData.teamName}: {Mathf.Ceil(i)}", 0.5f);
+            PlayerGUI.Instance.SetTitle($"{teamData.teamName} Victory in {Mathf.Ceil(i)}", 0.5f);
             yield return null;
         }
         PlayerGUI.Instance.SetTitle($"{teamData.teamName} Wins!", 3f);

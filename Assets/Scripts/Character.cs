@@ -59,6 +59,7 @@ public abstract class Character : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(float damage)
     {
+        if (Health <= 0) return;
         health -= damage;
         HitParticle hitParticle = Instantiate(Resources.Load<HitParticle>("HitParticle"), transform.position + UnityEngine.Random.insideUnitSphere * .7f, Quaternion.identity);
         hitParticle.SetText(damage);

@@ -5031,7 +5031,7 @@ MonoBehaviour:
   trackingArrow: {fileID: 687461169280495502, guid: 6eac81202816d6744b7343932a14d18b,
     type: 3}
   maxProgress: 2.5
-  radius: 2
+  radius: 1
 --- !u!58 &-5117425657732236298
 CircleCollider2D:
   m_ObjectHideFlags: 0
